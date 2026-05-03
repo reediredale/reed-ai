@@ -227,25 +227,29 @@ export default function ToolSwitcher() {
       <section id="contact" className="pb-24 border-t border-neutral-100">
         <div className="max-w-content mx-auto pt-16 px-6">
 
-          <p className="text-xs font-semibold uppercase tracking-widest text-neutral-400 mb-5">
-            What&apos;s your stack?
-          </p>
-
-          {/* Fake input */}
+          {/* High-contrast fake input — dark bg stands out against the white page */}
           <button
             onClick={openModal}
             aria-label="Tell me what your company does"
-            className="w-full flex items-center gap-3 px-4 py-3.5 bg-white border border-neutral-200 rounded-xl text-left hover:border-neutral-400 hover:shadow-sm transition-all duration-150 group cursor-text mb-8"
+            className="w-full flex items-center gap-4 pl-5 pr-2 py-2 bg-neutral-900 hover:bg-neutral-800 rounded-2xl text-left transition-colors duration-150 group cursor-text mb-8"
           >
-            <span className="flex-1 text-sm text-neutral-400 select-none">
+            {/* Placeholder text */}
+            <span className="flex-1 text-sm text-neutral-500 select-none py-2">
               Tell me what your{' '}
-              <span className={`text-neutral-700 transition-all duration-[250ms] inline-block ${wordFading ? 'opacity-0 -translate-y-0.5' : 'opacity-100 translate-y-0'}`}>
+              <span className={`text-white font-medium transition-all duration-[250ms] inline-block ${wordFading ? 'opacity-0 -translate-y-0.5' : 'opacity-100 translate-y-0'}`}>
                 {CYCLING_WORDS[wordIdx]}
               </span>
               {' '}does
-              <span className={`inline-block w-px h-3.5 bg-neutral-700 ml-0.5 align-middle transition-opacity duration-75 ${cursorOn ? 'opacity-100' : 'opacity-0'}`} />
+              <span className={`inline-block w-px h-3.5 bg-white ml-0.5 align-middle transition-opacity duration-75 ${cursorOn ? 'opacity-100' : 'opacity-0'}`} />
             </span>
-            <span className="text-neutral-300 group-hover:text-neutral-500 transition-colors text-base shrink-0">↗</span>
+
+            {/* Embedded send button */}
+            <span className="shrink-0 flex items-center gap-1.5 bg-white text-neutral-900 text-xs font-semibold px-4 py-2.5 rounded-xl group-hover:bg-neutral-100 transition-colors duration-150 whitespace-nowrap">
+              Get in touch
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M2.5 9.5L9.5 2.5M9.5 2.5H4M9.5 2.5V8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </span>
           </button>
 
         </div>
