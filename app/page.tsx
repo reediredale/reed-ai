@@ -1,5 +1,5 @@
 import Hero from '@/components/Hero'
-import ContactForm from '@/components/ContactForm'
+import ToolSwitcher from '@/components/ToolSwitcher'
 import Services from '@/components/Services'
 import About from '@/components/About'
 import Footer from '@/components/Footer'
@@ -12,7 +12,7 @@ export default function Home() {
       <UTMTracker />
       <IntentTracker />
       <Hero />
-      <ContactForm />
+      <ToolSwitcher />
       <Services />
       <About />
       <Footer />

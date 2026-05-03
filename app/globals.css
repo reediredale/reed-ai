@@ -18,12 +18,12 @@ body {
   color: #0f0f0f;
 }
 
-/* Input focus ring */
+/* Input */
 .input-field {
   @apply w-full bg-white border border-neutral-200 rounded-lg px-4 py-3 text-neutral-900 placeholder-neutral-400 text-sm outline-none transition-all duration-150;
 }
 .input-field:focus {
-  @apply border-neutral-400 ring-0;
+  @apply border-neutral-400;
 }
 
 /* Section fade-in */
@@ -35,4 +35,19 @@ body {
 .section-animate.visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* Modal card pop-in */
+@keyframes modalIn {
+  from { opacity: 0; transform: scale(0.96) translateY(10px); }
+  to   { opacity: 1; transform: scale(1)    translateY(0); }
+}
+.modal-card {
+  animation: modalIn 0.18s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Connector pulse travelling left→right */
+@keyframes connectorFlow {
+  0%   { left: -60%; }
+  100% { left: 130%; }
 }
