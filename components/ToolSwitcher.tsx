@@ -12,8 +12,6 @@ import {
 } from 'simple-icons'
 import type { SimpleIcon } from 'simple-icons'
 
-// Light-colored brand icons (e.g. Mailchimp yellow, Intercom cyan) become invisible on white.
-// Fall back to a neutral dark color for anything above 60% perceived luminance.
 function displayColor(hex: string): string {
   const r = parseInt(hex.slice(0, 2), 16)
   const g = parseInt(hex.slice(2, 4), 16)
@@ -22,7 +20,7 @@ function displayColor(hex: string): string {
   return luminance > 0.6 ? '#374151' : `#${hex}`
 }
 
-function BrandIcon({ icon, size = 26 }: { icon: SimpleIcon; size?: number }) {
+function BrandIcon({ icon, size = 22 }: { icon: SimpleIcon; size?: number }) {
   return (
     <svg
       role="img"
@@ -42,9 +40,9 @@ const toolGroups = [
   {
     label: 'CRM',
     tools: [
-      { name: 'HubSpot',  icon: siHubspot },
-      { name: 'Stripe',   icon: siStripe },
-      { name: 'Shopify',  icon: siShopify },
+      { name: 'HubSpot', icon: siHubspot },
+      { name: 'Stripe',  icon: siStripe },
+      { name: 'Shopify', icon: siShopify },
     ],
   },
   {
@@ -110,17 +108,13 @@ function ToolSlot({ group, staggerIndex }: { group: Group; staggerIndex: number 
     <div className="flex flex-col items-center gap-2 shrink-0">
       <div
         title={tool.name}
-        className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-white border border-neutral-200 shadow-sm flex items-center justify-center"
+        className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-white border border-neutral-200 shadow-sm flex items-center justify-center"
       >
-        <span
-          className={`transition-all duration-200 ${
-            visible ? 'opacity-100 scale-100' : 'opacity-0 scale-90'
-          }`}
-        >
-          <BrandIcon icon={tool.icon} size={26} />
+        <span className={`transition-all duration-200 ${visible ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}>
+          <BrandIcon icon={tool.icon} size={22} />
         </span>
       </div>
-      <span className="text-[9px] sm:text-[10px] font-semibold text-neutral-400 uppercase tracking-widest whitespace-nowrap">
+      <span className="text-[9px] font-semibold text-neutral-400 uppercase tracking-widest whitespace-nowrap">
         {group.label}
       </span>
     </div>
@@ -129,7 +123,7 @@ function ToolSlot({ group, staggerIndex }: { group: Group; staggerIndex: number 
 
 function Connector() {
   return (
-    <div className="relative flex items-center w-6 sm:w-10 pb-5 overflow-hidden shrink-0">
+    <div className="relative flex items-center w-5 sm:w-8 pb-5 overflow-hidden shrink-0">
       <div className="w-full border-t border-dashed border-neutral-200" />
       <div
         className="absolute h-0.5 rounded-full pointer-events-none"
@@ -145,10 +139,12 @@ function Connector() {
 
 export default function ToolSwitcher() {
   const posthog = usePostHog()
-  const [wordIdx, setWordIdx]       = useState(0)
-  const [wordFading, setWordFading] = useState(false)
+  const [wordIdx, setWordIdx]         = useState(0)
+  const [wordFading, setWordFading]   = useState(false)
+  const [cursorOn, setCursorOn]       = useState(true)
   const [isModalOpen, setIsModalOpen] = useState(false)
 
+  // Cycle the placeholder word
   useEffect(() => {
     const interval = setInterval(() => {
       setWordFading(true)
@@ -160,8 +156,14 @@ export default function ToolSwitcher() {
     return () => clearInterval(interval)
   }, [])
 
+  // Blink the fake cursor
+  useEffect(() => {
+    const interval = setInterval(() => setCursorOn((v) => !v), 530)
+    return () => clearInterval(interval)
+  }, [])
+
   const openModal = () => {
-    posthog?.capture('cta_clicked', { cta: 'tool_switcher' })
+    posthog?.capture('cta_clicked', { cta: 'tool_switcher_input' })
     setIsModalOpen(true)
   }
 
@@ -170,22 +172,42 @@ export default function ToolSwitcher() {
       <section id="contact" className="px-6 pb-24 border-t border-neutral-100">
         <div className="max-w-content mx-auto pt-16">
 
-          <h2 className="font-display text-2xl sm:text-3xl font-semibold text-neutral-900 leading-snug mb-3">
-            Tell me what your{' '}
-            <span
-              className={`inline-block transition-all duration-[250ms] ${
-                wordFading ? 'opacity-0 -translate-y-1' : 'opacity-100 translate-y-0'
-              }`}
-            >
-              {cyclingWords[wordIdx]}
-            </span>
-            {' '}does.
-          </h2>
-          <p className="text-neutral-500 text-sm mb-12">
-            Whatever your stack looks like, I&apos;ll help you make it smarter.
+          <p className="text-xs font-semibold uppercase tracking-widest text-neutral-400 mb-5">
+            What&apos;s your stack?
           </p>
 
-          {/* Animated icon row */}
+          {/* Fake input — clicking opens the modal */}
+          <button
+            onClick={openModal}
+            aria-label="Tell me what your company does"
+            className="w-full flex items-center gap-3 px-4 py-3.5 bg-white border border-neutral-200 rounded-xl text-left hover:border-neutral-400 hover:shadow-sm transition-all duration-150 group cursor-text mb-6"
+          >
+            {/* Placeholder text with cycling word */}
+            <span className="flex-1 text-sm text-neutral-400 select-none">
+              Tell me what your{' '}
+              <span
+                className={`text-neutral-700 transition-all duration-[250ms] inline-block ${
+                  wordFading ? 'opacity-0 -translate-y-0.5' : 'opacity-100 translate-y-0'
+                }`}
+              >
+                {cyclingWords[wordIdx]}
+              </span>
+              {' '}does
+              {/* Blinking cursor */}
+              <span
+                className={`inline-block w-px h-3.5 bg-neutral-700 ml-0.5 align-middle transition-opacity duration-75 ${
+                  cursorOn ? 'opacity-100' : 'opacity-0'
+                }`}
+              />
+            </span>
+
+            {/* Arrow */}
+            <span className="text-neutral-300 group-hover:text-neutral-500 transition-colors text-base shrink-0">
+              ↗
+            </span>
+          </button>
+
+          {/* Icon row below the input */}
           <div className="flex items-end overflow-x-auto pb-1 -mx-1 px-1">
             {toolGroups.map((group, i) => (
               <div key={group.label} className="flex items-end">
@@ -193,15 +215,6 @@ export default function ToolSwitcher() {
                 {i < toolGroups.length - 1 && <Connector />}
               </div>
             ))}
-          </div>
-
-          <div className="mt-12">
-            <button
-              onClick={openModal}
-              className="inline-flex items-center gap-2 px-5 py-2.5 bg-neutral-900 hover:bg-neutral-700 text-white text-sm font-medium rounded-lg transition-colors duration-150"
-            >
-              Tell me about your setup →
-            </button>
           </div>
 
         </div>
