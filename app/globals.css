@@ -51,3 +51,13 @@ body {
   0%   { left: -60%; }
   100% { left: 130%; }
 }
+
+/* Marquee scrolling rows */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@keyframes marqueeReverse {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}

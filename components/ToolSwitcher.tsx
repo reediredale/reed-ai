@@ -3,24 +3,50 @@
 import { useState, useEffect } from 'react'
 import { usePostHog } from 'posthog-js/react'
 import ContactModal from './ContactModal'
-import {
-  siHubspot, siStripe, siShopify,
-  siMailchimp, siBrevo, siIntercom,
-  siGoogleanalytics, siMixpanel, siLooker,
-  siMeta, siGoogleads, siInstagram,
-  siZapier, siMake, siN8n,
-} from 'simple-icons'
 import type { SimpleIcon } from 'simple-icons'
+import {
+  // AI & Intelligence
+  siClaude, siAnthropic, siHuggingface, siGooglegemini, siMistralai,
+  siPerplexity, siLangchain, siCrewai, siReplicate, siGithubcopilot, siDataiku,
+  // CRM & Customer Success
+  siHubspot, siZoho, siIntercom, siZendesk, siExpensify,
+  // Email & Marketing
+  siMailchimp, siBrevo, siMailgun, siCampaignmonitor, siGmail,
+  // Analytics & BI
+  siGoogleanalytics, siMixpanel, siLooker, siGrafana, siDatadog,
+  siMetabase, siPlausibleanalytics, siSimpleanalytics, siHotjar,
+  // Social & Ads
+  siMeta, siGoogleads, siFacebook, siInstagram, siTiktok,
+  siX, siYoutube, siPinterest, siSnapchat, siReddit,
+  // Data & Integration
+  siGooglebigquery, siSnowflake, siDatabricks, siAirbyte,
+  siGoogletagmanager, siGooglesearchconsole, siGooglemarketingplatform,
+  // Automation
+  siZapier, siMake, siN8n, siIfttt, siApacheairflow,
+  // E-commerce & Payments
+  siShopify, siWoocommerce, siBigcommerce, siStripe, siPaypal, siSquare,
+  // Productivity & PM
+  siNotion, siAirtable, siAsana, siTrello, siClickup, siJira, siConfluence,
+  // Website & CMS
+  siWebflow, siWordpress, siWix, siSquarespace, siFramer, siContentful,
+  // Meetings & Forms
+  siZoom, siLoom, siCalendly, siTypeform, siGooglemeet,
+  // Design & Docs
+  siFigma, siGooglesheets, siGoogledocs,
+  // Other
+  siSemrush, siDropbox,
+} from 'simple-icons'
 
+// Icons with hex luminance > 0.6 are invisible on white — fall back to neutral-700
 function displayColor(hex: string): string {
   const r = parseInt(hex.slice(0, 2), 16)
   const g = parseInt(hex.slice(2, 4), 16)
   const b = parseInt(hex.slice(4, 6), 16)
-  const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255
-  return luminance > 0.6 ? '#374151' : `#${hex}`
+  const lum = (0.299 * r + 0.587 * g + 0.114 * b) / 255
+  return lum > 0.6 ? '#374151' : `#${hex}`
 }
 
-function BrandIcon({ icon, size = 22 }: { icon: SimpleIcon; size?: number }) {
+function BrandIcon({ icon, size = 20 }: { icon: SimpleIcon; size?: number }) {
   return (
     <svg
       role="img"
@@ -36,103 +62,137 @@ function BrandIcon({ icon, size = 22 }: { icon: SimpleIcon; size?: number }) {
   )
 }
 
-const toolGroups = [
-  {
-    label: 'CRM',
-    tools: [
-      { name: 'HubSpot', icon: siHubspot },
-      { name: 'Stripe',  icon: siStripe },
-      { name: 'Shopify', icon: siShopify },
-    ],
-  },
-  {
-    label: 'Email',
-    tools: [
-      { name: 'Mailchimp', icon: siMailchimp },
-      { name: 'Brevo',     icon: siBrevo },
-      { name: 'Intercom',  icon: siIntercom },
-    ],
-  },
-  {
-    label: 'Analytics',
-    tools: [
-      { name: 'Google Analytics', icon: siGoogleanalytics },
-      { name: 'Mixpanel',         icon: siMixpanel },
-      { name: 'Looker',           icon: siLooker },
-    ],
-  },
-  {
-    label: 'Ads',
-    tools: [
-      { name: 'Meta',       icon: siMeta },
-      { name: 'Google Ads', icon: siGoogleads },
-      { name: 'Instagram',  icon: siInstagram },
-    ],
-  },
-  {
-    label: 'Automation',
-    tools: [
-      { name: 'Zapier', icon: siZapier },
-      { name: 'Make',   icon: siMake },
-      { name: 'n8n',    icon: siN8n },
-    ],
-  },
+type IconEntry = { name: string; icon: SimpleIcon }
+
+const ALL_ICONS: IconEntry[] = [
+  // row 1 (first half)
+  { name: 'Claude',               icon: siClaude },
+  { name: 'HubSpot',              icon: siHubspot },
+  { name: 'Google Analytics',     icon: siGoogleanalytics },
+  { name: 'Meta',                 icon: siMeta },
+  { name: 'Zapier',               icon: siZapier },
+  { name: 'Shopify',              icon: siShopify },
+  { name: 'Notion',               icon: siNotion },
+  { name: 'Anthropic',            icon: siAnthropic },
+  { name: 'Mailchimp',            icon: siMailchimp },
+  { name: 'Mixpanel',             icon: siMixpanel },
+  { name: 'Google Ads',           icon: siGoogleads },
+  { name: 'Make',                 icon: siMake },
+  { name: 'Stripe',               icon: siStripe },
+  { name: 'Airtable',             icon: siAirtable },
+  { name: 'Hugging Face',         icon: siHuggingface },
+  { name: 'Intercom',             icon: siIntercom },
+  { name: 'Looker',               icon: siLooker },
+  { name: 'Instagram',            icon: siInstagram },
+  { name: 'n8n',                  icon: siN8n },
+  { name: 'WooCommerce',          icon: siWoocommerce },
+  { name: 'Asana',                icon: siAsana },
+  { name: 'Mistral AI',           icon: siMistralai },
+  { name: 'Brevo',                icon: siBrevo },
+  { name: 'Datadog',              icon: siDatadog },
+  { name: 'TikTok',               icon: siTiktok },
+  { name: 'Apache Airflow',       icon: siApacheairflow },
+  { name: 'Webflow',              icon: siWebflow },
+  { name: 'Jira',                 icon: siJira },
+  { name: 'Google Gemini',        icon: siGooglegemini },
+  { name: 'Gmail',                icon: siGmail },
+  { name: 'Snowflake',            icon: siSnowflake },
+  { name: 'Facebook',             icon: siFacebook },
+  { name: 'Airbyte',              icon: siAirbyte },
+  { name: 'Trello',               icon: siTrello },
+  { name: 'LangChain',            icon: siLangchain },
+  { name: 'Zendesk',              icon: siZendesk },
+  { name: 'Grafana',              icon: siGrafana },
+  { name: 'YouTube',              icon: siYoutube },
+  { name: 'Framer',               icon: siFramer },
+  { name: 'ClickUp',              icon: siClickup },
+  // row 2 (second half)
+  { name: 'Perplexity',           icon: siPerplexity },
+  { name: 'Zoho',                 icon: siZoho },
+  { name: 'Hotjar',               icon: siHotjar },
+  { name: 'X',                    icon: siX },
+  { name: 'IFTTT',                icon: siIfttt },
+  { name: 'BigCommerce',          icon: siBigcommerce },
+  { name: 'Confluence',           icon: siConfluence },
+  { name: 'CrewAI',               icon: siCrewai },
+  { name: 'Mailgun',              icon: siMailgun },
+  { name: 'Metabase',             icon: siMetabase },
+  { name: 'Pinterest',            icon: siPinterest },
+  { name: 'Databricks',           icon: siDatabricks },
+  { name: 'WordPress',            icon: siWordpress },
+  { name: 'GitHub Copilot',       icon: siGithubcopilot },
+  { name: 'Campaign Monitor',     icon: siCampaignmonitor },
+  { name: 'Plausible Analytics',  icon: siPlausibleanalytics },
+  { name: 'Snapchat',             icon: siSnapchat },
+  { name: 'Google BigQuery',      icon: siGooglebigquery },
+  { name: 'Wix',                  icon: siWix },
+  { name: 'Replicate',            icon: siReplicate },
+  { name: 'Expensify',            icon: siExpensify },
+  { name: 'Simple Analytics',     icon: siSimpleanalytics },
+  { name: 'Reddit',               icon: siReddit },
+  { name: 'Google Tag Manager',   icon: siGoogletagmanager },
+  { name: 'Squarespace',          icon: siSquarespace },
+  { name: 'Dataiku',              icon: siDataiku },
+  { name: 'PayPal',               icon: siPaypal },
+  { name: 'Google Meet',          icon: siGooglemeet },
+  { name: 'Semrush',              icon: siSemrush },
+  { name: 'Figma',                icon: siFigma },
+  { name: 'Google Search Console',icon: siGooglesearchconsole },
+  { name: 'Square',               icon: siSquare },
+  { name: 'Zoom',                 icon: siZoom },
+  { name: 'Contentful',           icon: siContentful },
+  { name: 'Google Mktg Platform', icon: siGooglemarketingplatform },
+  { name: 'Loom',                 icon: siLoom },
+  { name: 'Typeform',             icon: siTypeform },
+  { name: 'Google Sheets',        icon: siGooglesheets },
+  { name: 'Calendly',             icon: siCalendly },
+  { name: 'Google Docs',          icon: siGoogledocs },
+  { name: 'Dropbox',              icon: siDropbox },
 ]
 
-const cyclingWords = ['company', 'sales team', 'marketing team', 'revenue team', 'startup']
+const ROW1 = ALL_ICONS.slice(0, 41)
+const ROW2 = ALL_ICONS.slice(41)
 
-type Tool  = { name: string; icon: SimpleIcon }
-type Group = { label: string; tools: Tool[] }
+const CYCLING_WORDS = ['company', 'sales team', 'marketing team', 'revenue team', 'startup']
 
-function ToolSlot({ group, staggerIndex }: { group: Group; staggerIndex: number }) {
-  const [toolIdx, setToolIdx] = useState(staggerIndex % group.tools.length)
-  const [visible, setVisible] = useState(true)
-
-  useEffect(() => {
-    let interval: ReturnType<typeof setInterval>
-    const timeout = setTimeout(() => {
-      interval = setInterval(() => {
-        setVisible(false)
-        setTimeout(() => {
-          setToolIdx((prev) => (prev + 1) % group.tools.length)
-          setVisible(true)
-        }, 220)
-      }, 2400)
-    }, staggerIndex * 480)
-    return () => { clearTimeout(timeout); clearInterval(interval) }
-  }, [group.tools.length, staggerIndex])
-
-  const tool = group.tools[toolIdx]
-
+function IconCard({ entry }: { entry: IconEntry }) {
   return (
-    <div className="flex flex-col items-center gap-2 shrink-0">
-      <div
-        title={tool.name}
-        className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-white border border-neutral-200 shadow-sm flex items-center justify-center"
-      >
-        <span className={`transition-all duration-200 ${visible ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}>
-          <BrandIcon icon={tool.icon} size={22} />
-        </span>
-      </div>
-      <span className="text-[9px] font-semibold text-neutral-400 uppercase tracking-widest whitespace-nowrap">
-        {group.label}
-      </span>
+    <div
+      title={entry.name}
+      className="shrink-0 w-10 h-10 rounded-xl bg-white border border-neutral-150 shadow-sm flex items-center justify-center"
+      style={{ border: '1px solid #e5e7eb' }}
+    >
+      <BrandIcon icon={entry.icon} size={20} />
     </div>
   )
 }
 
-function Connector() {
+function MarqueeRow({ icons, reverse = false, duration }: { icons: IconEntry[]; reverse?: boolean; duration: number }) {
+  const [paused, setPaused] = useState(false)
+  const doubled = [...icons, ...icons]
+
   return (
-    <div className="relative flex items-center w-5 sm:w-8 pb-5 overflow-hidden shrink-0">
-      <div className="w-full border-t border-dashed border-neutral-200" />
+    <div
+      className="overflow-hidden"
+      style={{
+        WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)',
+        maskImage: 'linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)',
+      }}
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+    >
       <div
-        className="absolute h-0.5 rounded-full pointer-events-none"
+        className="flex gap-3 py-1"
         style={{
-          width: '55%',
-          background: 'linear-gradient(to right, transparent, #a3a3a3, transparent)',
-          animation: 'connectorFlow 2.2s linear infinite',
+          animation: `${reverse ? 'marqueeReverse' : 'marquee'} ${duration}s linear infinite`,
+          animationPlayState: paused ? 'paused' : 'running',
+          width: 'max-content',
         }}
-      />
+      >
+        {doubled.map((entry, i) => (
+          <IconCard key={`${entry.name}-${i}`} entry={entry} />
+        ))}
+      </div>
     </div>
   )
 }
@@ -144,22 +204,17 @@ export default function ToolSwitcher() {
   const [cursorOn, setCursorOn]       = useState(true)
   const [isModalOpen, setIsModalOpen] = useState(false)
 
-  // Cycle the placeholder word
   useEffect(() => {
-    const interval = setInterval(() => {
+    const iv = setInterval(() => {
       setWordFading(true)
-      setTimeout(() => {
-        setWordIdx((prev) => (prev + 1) % cyclingWords.length)
-        setWordFading(false)
-      }, 280)
+      setTimeout(() => { setWordIdx(p => (p + 1) % CYCLING_WORDS.length); setWordFading(false) }, 280)
     }, 2800)
-    return () => clearInterval(interval)
+    return () => clearInterval(iv)
   }, [])
 
-  // Blink the fake cursor
   useEffect(() => {
-    const interval = setInterval(() => setCursorOn((v) => !v), 530)
-    return () => clearInterval(interval)
+    const iv = setInterval(() => setCursorOn(v => !v), 530)
+    return () => clearInterval(iv)
   }, [])
 
   const openModal = () => {
@@ -169,54 +224,40 @@ export default function ToolSwitcher() {
 
   return (
     <>
-      <section id="contact" className="px-6 pb-24 border-t border-neutral-100">
-        <div className="max-w-content mx-auto pt-16">
+      <section id="contact" className="pb-24 border-t border-neutral-100">
+        <div className="max-w-content mx-auto pt-16 px-6">
 
           <p className="text-xs font-semibold uppercase tracking-widest text-neutral-400 mb-5">
             What&apos;s your stack?
           </p>
 
-          {/* Fake input — clicking opens the modal */}
+          {/* Fake input */}
           <button
             onClick={openModal}
             aria-label="Tell me what your company does"
-            className="w-full flex items-center gap-3 px-4 py-3.5 bg-white border border-neutral-200 rounded-xl text-left hover:border-neutral-400 hover:shadow-sm transition-all duration-150 group cursor-text mb-6"
+            className="w-full flex items-center gap-3 px-4 py-3.5 bg-white border border-neutral-200 rounded-xl text-left hover:border-neutral-400 hover:shadow-sm transition-all duration-150 group cursor-text mb-8"
           >
-            {/* Placeholder text with cycling word */}
             <span className="flex-1 text-sm text-neutral-400 select-none">
               Tell me what your{' '}
-              <span
-                className={`text-neutral-700 transition-all duration-[250ms] inline-block ${
-                  wordFading ? 'opacity-0 -translate-y-0.5' : 'opacity-100 translate-y-0'
-                }`}
-              >
-                {cyclingWords[wordIdx]}
+              <span className={`text-neutral-700 transition-all duration-[250ms] inline-block ${wordFading ? 'opacity-0 -translate-y-0.5' : 'opacity-100 translate-y-0'}`}>
+                {CYCLING_WORDS[wordIdx]}
               </span>
               {' '}does
-              {/* Blinking cursor */}
-              <span
-                className={`inline-block w-px h-3.5 bg-neutral-700 ml-0.5 align-middle transition-opacity duration-75 ${
-                  cursorOn ? 'opacity-100' : 'opacity-0'
-                }`}
-              />
+              <span className={`inline-block w-px h-3.5 bg-neutral-700 ml-0.5 align-middle transition-opacity duration-75 ${cursorOn ? 'opacity-100' : 'opacity-0'}`} />
             </span>
-
-            {/* Arrow */}
-            <span className="text-neutral-300 group-hover:text-neutral-500 transition-colors text-base shrink-0">
-              ↗
-            </span>
+            <span className="text-neutral-300 group-hover:text-neutral-500 transition-colors text-base shrink-0">↗</span>
           </button>
 
-          {/* Icon row below the input */}
-          <div className="flex items-end overflow-x-auto pb-1 -mx-1 px-1">
-            {toolGroups.map((group, i) => (
-              <div key={group.label} className="flex items-end">
-                <ToolSlot group={group} staggerIndex={i} />
-                {i < toolGroups.length - 1 && <Connector />}
-              </div>
-            ))}
-          </div>
+        </div>
 
+        {/* Marquee rows — full bleed, no horizontal padding so fade reaches the viewport edge */}
+        <div className="space-y-3">
+          <div className="flex items-center gap-3 px-6 mb-3">
+            <span className="text-xs text-neutral-400">500+ tools worked with</span>
+            <div className="flex-1 border-t border-neutral-100" />
+          </div>
+          <MarqueeRow icons={ROW1} reverse={false} duration={55} />
+          <MarqueeRow icons={ROW2} reverse={true}  duration={45} />
         </div>
       </section>
 
