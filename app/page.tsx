@@ -1,4 +1,5 @@
 import Hero from '@/components/Hero'
+import SocialProof from '@/components/SocialProof'
 import ToolSwitcher from '@/components/ToolSwitcher'
 import Services from '@/components/Services'
 import About from '@/components/About'

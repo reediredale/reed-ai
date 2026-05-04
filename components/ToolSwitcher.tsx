@@ -1,8 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-import { usePostHog } from 'posthog-js/react'
-import ContactModal from './ContactModal'
+import { useState } from 'react'
 import type { SimpleIcon } from 'simple-icons'
 import {
   // AI & Intelligence
@@ -153,8 +151,6 @@ const ALL_ICONS: IconEntry[] = [
 const ROW1 = ALL_ICONS.slice(0, 41)
 const ROW2 = ALL_ICONS.slice(41)
 
-const CYCLING_WORDS = ['company', 'sales team', 'marketing team', 'revenue team', 'startup']
-
 function IconCard({ entry }: { entry: IconEntry }) {
   return (
     <div
@@ -198,74 +194,15 @@ function MarqueeRow({ icons, reverse = false, duration }: { icons: IconEntry[]; 
 }
 
 export default function ToolSwitcher() {
-  const posthog = usePostHog()
-  const [wordIdx, setWordIdx]         = useState(0)
-  const [wordFading, setWordFading]   = useState(false)
-  const [cursorOn, setCursorOn]       = useState(true)
-  const [isModalOpen, setIsModalOpen] = useState(false)
-
-  useEffect(() => {
-    const iv = setInterval(() => {
-      setWordFading(true)
-      setTimeout(() => { setWordIdx(p => (p + 1) % CYCLING_WORDS.length); setWordFading(false) }, 280)
-    }, 2800)
-    return () => clearInterval(iv)
-  }, [])
-
-  useEffect(() => {
-    const iv = setInterval(() => setCursorOn(v => !v), 530)
-    return () => clearInterval(iv)
-  }, [])
-
-  const openModal = () => {
-    posthog?.capture('cta_clicked', { cta: 'tool_switcher_input' })
-    setIsModalOpen(true)
-  }
-
   return (
-    <>
-      <section id="contact" className="pb-24 border-t border-neutral-100">
-        <div className="max-w-content mx-auto pt-16 px-6">
-
-          {/* High-contrast fake input — dark bg stands out against the white page */}
-          <button
-            onClick={openModal}
-            aria-label="Tell me what your company does"
-            className="w-full flex items-center gap-4 pl-5 pr-2 py-2 bg-neutral-900 hover:bg-neutral-800 rounded-2xl text-left transition-colors duration-150 group cursor-text mb-8"
-          >
-            {/* Placeholder text */}
-            <span className="flex-1 text-sm text-neutral-500 select-none py-2">
-              Tell me what your{' '}
-              <span className={`text-white font-medium transition-all duration-[250ms] inline-block ${wordFading ? 'opacity-0 -translate-y-0.5' : 'opacity-100 translate-y-0'}`}>
-                {CYCLING_WORDS[wordIdx]}
-              </span>
-              {' '}does
-              <span className={`inline-block w-px h-3.5 bg-white ml-0.5 align-middle transition-opacity duration-75 ${cursorOn ? 'opacity-100' : 'opacity-0'}`} />
-            </span>
-
-            {/* Embedded send button */}
-            <span className="shrink-0 flex items-center gap-1.5 bg-white text-neutral-900 text-xs font-semibold px-4 py-2.5 rounded-xl group-hover:bg-neutral-100 transition-colors duration-150 whitespace-nowrap">
-              Get in touch
-              <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M2.5 9.5L9.5 2.5M9.5 2.5H4M9.5 2.5V8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </span>
-          </button>
-
-        </div>
-
-        {/* Marquee rows — full bleed, no horizontal padding so fade reaches the viewport edge */}
-        <div className="space-y-3">
-          <div className="flex items-center gap-3 px-6 mb-3">
-            <span className="text-xs text-neutral-400">500+ tools worked with</span>
-            <div className="flex-1 border-t border-neutral-100" />
-          </div>
-          <MarqueeRow icons={ROW1} reverse={false} duration={55} />
-          <MarqueeRow icons={ROW2} reverse={true}  duration={45} />
-        </div>
-      </section>
-
-      <ContactModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
-    </>
+    <section id="contact" className="pb-16 border-t border-neutral-100">
+      <div className="space-y-3 pt-10">
+        <p className="text-xs text-neutral-400 text-center px-6 mb-3">
+          500+ tools integrated — probably know yours already
+        </p>
+        <MarqueeRow icons={ROW1} reverse={false} duration={55} />
+        <MarqueeRow icons={ROW2} reverse={true}  duration={45} />
+      </div>
+    </section>
   )
 }

@@ -5,6 +5,17 @@ import { usePostHog } from 'posthog-js/react'
 
 type FormState = 'idle' | 'loading' | 'success' | 'error'
 
+// CRO principles applied:
+// Hormozi  — named offer ("Free AI Stack Audit") + explicit value stack so visitor knows exactly what they get
+// Cialdini — scarcity ("~3 stacks/week"), authority (Reed's name in closing line), reciprocity framing ("no pitch")
+// Sutherland — reframe from "filling out a form" to "requesting an audit" — visitor receives, not gives
+
+const VALUE_ITEMS = [
+  'A Loom walkthrough of your biggest AI opportunity',
+  "A prioritised 'build first' list for your specific stack",
+  'An honest take — even if the answer is "not yet"',
+]
+
 export default function ContactModal({
   isOpen,
   onClose,
@@ -18,7 +29,6 @@ export default function ContactModal({
   const [fields, setFields]       = useState({ name: '', email: '', message: '' })
   const submitterName             = useRef('')
 
-  // Escape key
   useEffect(() => {
     if (!isOpen) return
     const handler = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose() }
@@ -26,13 +36,11 @@ export default function ContactModal({
     return () => document.removeEventListener('keydown', handler)
   }, [isOpen, onClose])
 
-  // Lock body scroll
   useEffect(() => {
     document.body.style.overflow = isOpen ? 'hidden' : ''
     return () => { document.body.style.overflow = '' }
   }, [isOpen])
 
-  // Reset form when closed
   useEffect(() => {
     if (!isOpen) {
       setFormState('idle')
@@ -67,12 +75,7 @@ export default function ContactModal({
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: fields.name,
-          email: fields.email,
-          tools: fields.message,
-          challenge: '',
-        }),
+        body: JSON.stringify({ name: fields.name, email: fields.email, tools: fields.message, challenge: '' }),
       })
       if (!res.ok) throw new Error()
       posthog?.capture('contact_form_success', { name: fields.name })
@@ -87,11 +90,10 @@ export default function ContactModal({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/20 backdrop-blur-sm"
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-black/25 backdrop-blur-sm"
       onClick={(e) => { if (e.target === e.currentTarget) onClose() }}
     >
       <div className="modal-card bg-white rounded-2xl shadow-2xl w-full max-w-lg relative">
-        {/* Close */}
         <button
           onClick={onClose}
           aria-label="Close"
@@ -102,22 +104,43 @@ export default function ContactModal({
 
         <div className="p-7 sm:p-8">
           {formState === 'success' ? (
-            <div className="py-4 text-center">
-              <p className="font-display text-2xl font-semibold text-neutral-900 mb-2">
-                Got it, {submitterName.current}.
+            /* Success — tell them exactly what happens next (Hormozi: set expectations) */
+            <div className="py-6 text-center">
+              <div className="w-12 h-12 rounded-full bg-green-50 border border-green-200 flex items-center justify-center mx-auto mb-4 text-green-600 text-xl">
+                ✓
+              </div>
+              <p className="font-display text-xl font-semibold text-neutral-900 mb-2">
+                You&apos;re in, {submitterName.current}.
               </p>
-              <p className="text-neutral-500 text-sm">
-                I'll read what you've shared and come back to you soon.
+              <p className="text-neutral-500 text-sm leading-relaxed">
+                I&apos;ll review your stack and send you a Loom within 48 hours.
+                Keep an eye on your inbox.
               </p>
             </div>
           ) : (
             <>
-              <p className="font-display font-semibold text-neutral-900 text-xl mb-1">
-                What are you working on?
+              {/* Offer headline — Hormozi: name your offer, make it concrete */}
+              <p className="font-display font-bold text-neutral-900 text-xl mb-1">
+                Get your FREE AI Stack Roadmap.
               </p>
-              <p className="text-neutral-500 text-sm mb-6">
-                Tell me your current setup and what&apos;s not working. No pitch, just a conversation.
+              <p className="text-neutral-500 text-sm mb-5">
+                Takes 2 minutes. Back to you within 48 hours.
               </p>
+
+              {/* Value stack — Hormozi: show what they get BEFORE asking for anything */}
+              <div className="bg-neutral-50 border border-neutral-100 rounded-xl p-4 mb-6">
+                <p className="text-[11px] font-semibold uppercase tracking-widest text-neutral-400 mb-3">
+                  What you&apos;ll get
+                </p>
+                <ul className="space-y-2.5">
+                  {VALUE_ITEMS.map((item) => (
+                    <li key={item} className="flex items-start gap-2.5 text-sm text-neutral-700">
+                      <span className="text-green-500 shrink-0 mt-px font-bold">✓</span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
 
               <form onSubmit={handleSubmit} className="space-y-3">
                 <div className="grid grid-cols-2 gap-3">
@@ -143,27 +166,26 @@ export default function ContactModal({
                 </div>
                 <textarea
                   required
-                  rows={4}
+                  rows={3}
                   value={fields.message}
                   onChange={set('message')}
                   onFocus={handleFirstFocus}
-                  placeholder="e.g. We use HubSpot and GA4 but our reps still do manual outreach and we have no idea which leads are actually ready to buy..."
+                  placeholder="What tools are you using, and what's not working? (e.g. HubSpot + GA4, but reps have no idea which leads are actually ready to buy)"
                   className="input-field resize-none"
                 />
 
                 {formState === 'error' && (
                   <p className="text-xs text-red-500">
-                    Something went wrong — email me directly at{' '}
-                    <a href="mailto:reed@reediredale.com" className="underline">
-                      reed@reediredale.com
-                    </a>
+                    Something went wrong — email me at{' '}
+                    <a href="mailto:reed@reediredale.com" className="underline">reed@reediredale.com</a>
                   </p>
                 )}
 
+                {/* Submit — Hormozi: CTA names the outcome, not the action */}
                 <button
                   type="submit"
                   disabled={formState === 'loading'}
-                  className="w-full inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-neutral-900 hover:bg-neutral-700 disabled:opacity-50 disabled:cursor-not-allowed text-white text-sm font-medium rounded-lg transition-colors duration-150"
+                  className="w-full inline-flex items-center justify-center gap-2 px-5 py-3 bg-neutral-900 hover:bg-neutral-700 disabled:opacity-50 disabled:cursor-not-allowed text-white text-sm font-semibold rounded-xl transition-colors duration-150"
                 >
                   {formState === 'loading' ? (
                     <>
@@ -171,9 +193,14 @@ export default function ContactModal({
                       Sending...
                     </>
                   ) : (
-                    'Send →'
+                    'Request my free roadmap →'
                   )}
                 </button>
+
+                {/* Scarcity + reciprocity + anti-pitch — Cialdini trifecta under the button */}
+                <p className="text-center text-xs text-neutral-400 pt-1">
+                  I review ~3 stacks a week.&nbsp; No pitch — ever. Just a straight answer.
+                </p>
               </form>
             </>
           )}

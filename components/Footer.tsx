@@ -8,7 +8,7 @@ export default function Footer() {
             reed@reediredale.com
           </a>
           <a
-            href="https://www.linkedin.com/in/reediredale"
+            href="https://www.linkedin.com/in/reed-iredale/"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-neutral-700 transition-colors"
