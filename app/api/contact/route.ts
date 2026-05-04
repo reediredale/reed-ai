@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { Resend } from 'resend'
+import nodemailer from 'nodemailer'
 
 export const runtime = 'nodejs'
 
@@ -7,17 +7,22 @@ export async function POST(req: NextRequest) {
   try {
     const { name, email, company, tools, challenge } = await req.json()
 
-    if (!name || !email || !tools || !challenge) {
+    if (!name || !email || !tools) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 })
     }
 
-    const resend = new Resend(process.env.RESEND_API_KEY)
-    const to = process.env.CONTACT_TO_EMAIL ?? 'reed@reediredale.com'
-    const from = process.env.CONTACT_FROM_EMAIL ?? 'onboarding@resend.dev'
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: process.env.GMAIL_USER,
+        pass: process.env.GMAIL_APP_PASSWORD,
+      },
+    })
 
-    await resend.emails.send({
-      from,
-      to,
+    await transporter.sendMail({
+      from: `"Reed Iredale Site" <${process.env.GMAIL_USER}>`,
+      to: process.env.CONTACT_TO_EMAIL ?? 'reed@reediredale.com',
+      replyTo: email,
       subject: `New inquiry from ${name}${company ? ` · ${company}` : ''}`,
       html: `
         <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; max-width: 600px; margin: 0 auto; background: #0a0a0a; color: #f5f5f5; padding: 40px; border-radius: 12px;">
@@ -41,14 +46,9 @@ export async function POST(req: NextRequest) {
             </tr>` : ''}
           </table>
 
-          <div style="margin-bottom: 24px;">
-            <p style="margin: 0 0 8px; color: #666; font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em;">Currently Using</p>
-            <p style="margin: 0; color: #f5f5f5; font-size: 14px; line-height: 1.7; background: #111; padding: 16px; border-radius: 8px; border-left: 2px solid #7c3aed; white-space: pre-wrap;">${tools}</p>
-          </div>
-
           <div style="margin-bottom: 32px;">
-            <p style="margin: 0 0 8px; color: #666; font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em;">Biggest Challenge</p>
-            <p style="margin: 0; color: #f5f5f5; font-size: 14px; line-height: 1.7; background: #111; padding: 16px; border-radius: 8px; border-left: 2px solid #2563eb; white-space: pre-wrap;">${challenge}</p>
+            <p style="margin: 0 0 8px; color: #666; font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em;">Stack &amp; Tools</p>
+            <p style="margin: 0; color: #f5f5f5; font-size: 14px; line-height: 1.7; background: #111; padding: 16px; border-radius: 8px; border-left: 2px solid #7c3aed; white-space: pre-wrap;">${tools}</p>
           </div>
 
           <div style="padding-top: 24px; border-top: 1px solid #222;">
