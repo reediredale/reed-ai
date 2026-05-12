@@ -57,10 +57,11 @@ export default function Hero() {
                 AI for sales &amp; marketing teams · RMIT &amp; UTS Data Science
               </p>
             </div>
+            {/*
             <div className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-green-200 bg-green-50">
               <span className="w-1.5 h-1.5 rounded-full bg-green-500 shrink-0" />
-              <span className="text-xs font-medium text-green-700 whitespace-nowrap">Taking new projects</span>
-            </div>
+               <span className="text-xs font-medium text-green-700 whitespace-nowrap">Taking new projects</span> 
+            </div>*/}
           </div>
 
           {/* Headline */}
