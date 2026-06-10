@@ -15,13 +15,13 @@ const spaceGrotesk = Space_Grotesk({
 })
 
 export const metadata: Metadata = {
-  title: 'Reed Iredale — AI for Sales & Marketing',
+  title: 'Reed Iredale — Growth Experimentation Consultant',
   description:
-    'I build self-learning AI systems for sales and marketing teams. Data Science expertise from RMIT and UTS.',
+    'Growth Experimentation Consultant helping brands run structured experiments that compound into revenue. Worked with BHP, Ladbrokes, Australian Retirement Trust, and 200+ others.',
   openGraph: {
-    title: 'Reed Iredale — AI for Sales & Marketing',
+    title: 'Reed Iredale — Growth Experimentation Consultant',
     description:
-      'Self-learning AI systems that adapt to your team, your data, and your customers.',
+      'Structured growth experiments — A/B tests, funnel analyses, attribution — that find the levers that move your number.',
     url: 'https://reediredale.com',
     siteName: 'Reed Iredale',
     locale: 'en_AU',

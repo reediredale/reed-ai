@@ -3,7 +3,7 @@
 // The stats below are defensible from what you told me — update if you want different numbers.
 
 const stats = [
-  { value: 'loads',    label: 'teams worked with' },
+  { value: '200+',    label: 'brands worked with' },
   { value: '500+',   label: 'tools integrated' },
   { value: '< 48hr', label: 'audit turnaround' },
 ]

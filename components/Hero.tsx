@@ -54,7 +54,7 @@ export default function Hero() {
                 Reed Iredale
               </p>
               <p className="text-neutral-500 text-xs mt-0.5">
-                AI for sales &amp; marketing teams · RMIT &amp; UTS Data Science
+                Growth Experimentation Consultant · RMIT &amp; UTS Data Science
               </p>
             </div>
             {/*
@@ -66,15 +66,15 @@ export default function Hero() {
 
           {/* Headline */}
           <h1 className="font-display text-3xl sm:text-[2.6rem] font-bold text-neutral-900 leading-[1.15] tracking-tight mb-4">
-            Your sales data already knows<br className="hidden sm:block" /> who&apos;ll buy next.
-            <span className="text-neutral-400 font-normal"> I build the AI that reads it.</span>
+            Your best growth lever is already<br className="hidden sm:block" /> in your data.
+            <span className="text-neutral-400 font-normal"> I run the experiments that find it.</span>
           </h1>
 
           {/* Sub */}
           <p className="text-neutral-500 text-base leading-relaxed  mb-6">
-            Most B2B teams have 12+ months of buying signals sitting in their CRM, calls, and
-            email threads — but their tools can&apos;t decode them. I build self-learning AI that
-            connects your stack and turns that data into closed deals.
+            Most teams optimise on gut feel. I design and run structured growth experiments —
+            A/B tests, funnel analyses, attribution frameworks — that identify exactly which
+            levers move your number. No guesswork. Just compounding evidence.
           </p>
 
           {/* CTA — dark high-contrast input above the fold */}
@@ -101,7 +101,7 @@ export default function Hero() {
 
           {/* Authority micro-copy — reassurance directly under CTA */}
           <p className="text-xs text-neutral-400">
-            Data Science · RMIT University &amp; UTS &nbsp;·&nbsp; Worked with loads of sales &amp; marketing teams
+            BHP · Ladbrokes · Australian Retirement Trust · InfoChoice · Oscar Wylee · 200+ others
           </p>
 
         </div>
