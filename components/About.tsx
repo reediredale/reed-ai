@@ -7,18 +7,18 @@ export default function About() {
         </p>
         <div className="space-y-4 text-neutral-600 text-sm leading-relaxed">
           <p>
-            Most sales and marketing teams are sitting on a goldmine of customer data — but
-            their tools don&apos;t talk to each other, their playbooks don&apos;t adapt, and
-            their reps spend more time on admin than on actually selling.
+            Most businesses run advertising without optimising conversions. It&apos;s like turning on
+            a tap without fixing the drain — you&apos;re spending more to fill the same leaky bucket.
           </p>
           <p>
-            I build AI systems that change that. Systems that ingest your CRM data, call
-            transcripts, and email threads — and turn them into models that learn who buys,
-            why they buy, and when they&apos;re ready.
+            I design and run structured growth experiments that find the levers already in your data.
+            Every recommendation is hypothesis-driven. Every outcome is measured.
           </p>
           <p>
-            Trained in Data Science at <span className="text-neutral-900 font-medium">RMIT University</span> and{' '}
-            <span className="text-neutral-900 font-medium">UTS</span>. Based in Australia.
+            Trained in Data Science at{' '}
+            <span className="text-neutral-900 font-medium">RMIT University</span> and{' '}
+            <span className="text-neutral-900 font-medium">UTS</span>. 15+ years in marketing,
+            design, and behavioural economics. Based in Brisbane, Australia.
           </p>
         </div>
       </div>

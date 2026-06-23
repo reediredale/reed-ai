@@ -5,15 +5,10 @@ import { usePostHog } from 'posthog-js/react'
 
 type FormState = 'idle' | 'loading' | 'success' | 'error'
 
-// CRO principles applied:
-// Hormozi  — named offer ("Free AI Stack Audit") + explicit value stack so visitor knows exactly what they get
-// Cialdini — scarcity ("~3 stacks/week"), authority (Reed's name in closing line), reciprocity framing ("no pitch")
-// Sutherland — reframe from "filling out a form" to "requesting an audit" — visitor receives, not gives
-
 const VALUE_ITEMS = [
-  'A Loom walkthrough of your biggest AI opportunity',
-  "A prioritised 'build first' list for your specific stack",
-  'An honest take — even if the answer is "not yet"',
+  'A full review of your biggest conversion leak',
+  'Prioritised quick-win recommendations for this week',
+  'An honest take — even if traffic is the real problem',
 ]
 
 export default function ContactModal({
@@ -26,7 +21,7 @@ export default function ContactModal({
   const posthog = usePostHog()
   const [formState, setFormState] = useState<FormState>('idle')
   const [started, setStarted]     = useState(false)
-  const [fields, setFields]       = useState({ name: '', email: '', message: '' })
+  const [fields, setFields]       = useState({ name: '', email: '', website: '', challenge: '' })
   const submitterName             = useRef('')
 
   useEffect(() => {
@@ -45,20 +40,20 @@ export default function ContactModal({
     if (!isOpen) {
       setFormState('idle')
       setStarted(false)
-      setFields({ name: '', email: '', message: '' })
+      setFields({ name: '', email: '', website: '', challenge: '' })
     }
   }, [isOpen])
 
   const handleFirstFocus = () => {
     if (!started) {
       setStarted(true)
-      posthog?.capture('contact_form_started')
+      posthog?.capture('cro_audit_form_started')
     }
   }
 
   const set = (field: keyof typeof fields) =>
     (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
-      setFields((prev) => ({ ...prev, [field]: e.target.value }))
+      setFields(prev => ({ ...prev, [field]: e.target.value }))
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -66,8 +61,9 @@ export default function ContactModal({
     submitterName.current = fields.name
 
     posthog?.identify(fields.email, { name: fields.name, email: fields.email })
-    posthog?.capture('contact_form_submitted', {
-      message_char_count: fields.message.length,
+    posthog?.capture('cro_audit_requested', {
+      website: fields.website,
+      challenge_char_count: fields.challenge.length,
       $set: { name: fields.name, email: fields.email },
     })
 
@@ -75,13 +71,19 @@ export default function ContactModal({
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name: fields.name, email: fields.email, tools: fields.message, challenge: '' }),
+        body: JSON.stringify({
+          name: fields.name,
+          email: fields.email,
+          website: fields.website,
+          tools: fields.challenge,
+          challenge: fields.challenge,
+        }),
       })
       if (!res.ok) throw new Error()
-      posthog?.capture('contact_form_success', { name: fields.name })
+      posthog?.capture('cro_audit_success', { name: fields.name })
       setFormState('success')
     } catch {
-      posthog?.capture('contact_form_error')
+      posthog?.capture('cro_audit_error')
       setFormState('error')
     }
   }
@@ -104,7 +106,6 @@ export default function ContactModal({
 
         <div className="p-7 sm:p-8">
           {formState === 'success' ? (
-            /* Success — tell them exactly what happens next (Hormozi: set expectations) */
             <div className="py-6 text-center">
               <div className="w-12 h-12 rounded-full bg-green-50 border border-green-200 flex items-center justify-center mx-auto mb-4 text-green-600 text-xl">
                 ✓
@@ -113,21 +114,19 @@ export default function ContactModal({
                 You&apos;re in, {submitterName.current}.
               </p>
               <p className="text-neutral-500 text-sm leading-relaxed">
-                I&apos;ll review your stack and send you a Loom within 48 hours.
+                I&apos;ll review your site and send you a Loom walkthrough within 48 hours.
                 Keep an eye on your inbox.
               </p>
             </div>
           ) : (
             <>
-              {/* Offer headline — Hormozi: name your offer, make it concrete */}
               <p className="font-display font-bold text-neutral-900 text-xl mb-1">
-                Get your FREE AI Stack Roadmap.
+                Get your FREE CRO Audit.
               </p>
               <p className="text-neutral-500 text-sm mb-5">
                 Takes 2 minutes. Back to you within 48 hours.
               </p>
 
-              {/* Value stack — Hormozi: show what they get BEFORE asking for anything */}
               <div className="bg-neutral-50 border border-neutral-100 rounded-xl p-4 mb-6">
                 <p className="text-[11px] font-semibold uppercase tracking-widest text-neutral-400 mb-3">
                   What you&apos;ll get
@@ -164,13 +163,22 @@ export default function ContactModal({
                     className="input-field"
                   />
                 </div>
+                <input
+                  type="url"
+                  required
+                  value={fields.website}
+                  onChange={set('website')}
+                  onFocus={handleFirstFocus}
+                  placeholder="https://yoursite.com"
+                  className="input-field"
+                />
                 <textarea
                   required
                   rows={3}
-                  value={fields.message}
-                  onChange={set('message')}
+                  value={fields.challenge}
+                  onChange={set('challenge')}
                   onFocus={handleFirstFocus}
-                  placeholder="What tools are you using, and what's not working? (e.g. HubSpot + GA4, but reps have no idea which leads are actually ready to buy)"
+                  placeholder="What's your biggest conversion challenge? (e.g. lots of traffic but poor checkout rate, high bounce on landing pages...)"
                   className="input-field resize-none"
                 />
 
@@ -181,7 +189,6 @@ export default function ContactModal({
                   </p>
                 )}
 
-                {/* Submit — Hormozi: CTA names the outcome, not the action */}
                 <button
                   type="submit"
                   disabled={formState === 'loading'}
@@ -193,13 +200,12 @@ export default function ContactModal({
                       Sending...
                     </>
                   ) : (
-                    'Request my free roadmap →'
+                    'Claim my free audit →'
                   )}
                 </button>
 
-                {/* Scarcity + reciprocity + anti-pitch — Cialdini trifecta under the button */}
                 <p className="text-center text-xs text-neutral-400 pt-1">
-                  I review ~3 stacks a week.&nbsp; No pitch — ever. Just a straight answer.
+                  I audit ~3 sites a week.&nbsp; No pitch — ever. Just a straight answer.
                 </p>
               </form>
             </>

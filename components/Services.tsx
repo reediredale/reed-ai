@@ -1,23 +1,23 @@
 const services = [
   {
-    title: 'Sales Intelligence AI',
+    title: 'CRO Audit & Strategy',
     description:
-      'Predictive models that score leads and tell your reps which deals to prioritise — trained on your historical win data.',
+      'A full funnel review — from landing page to checkout — identifying exactly where visitors drop off and why. You get a prioritised action list, not a 40-page PDF.',
   },
   {
-    title: 'Marketing Automation AI',
+    title: 'A/B Testing & Experimentation',
     description:
-      "Self-optimising campaign logic that learns which messages and timing convert — without constant manual A/B testing.",
+      'Hypothesis-driven test design, statistical analysis, and velocity. No gut-feel tests — every experiment is built to answer a specific question.',
   },
   {
-    title: 'Data Pipeline Architecture',
+    title: 'Analytics & Attribution',
     description:
-      'Custom pipelines that unify your CRM, ad platforms, and call data into a single layer your AI can actually learn from.',
+      'Clean measurement so you know what\'s actually driving conversions. GA4 setup, funnel tracking, and attribution modelling that reflects reality.',
   },
   {
-    title: 'Self-Learning Systems',
+    title: 'AI-Powered Personalisation',
     description:
-      "Models that adapt as your team closes deals and your market shifts — no retraining required.",
+      'Machine learning that adapts your site experience to individual intent signals — so the right message reaches the right visitor at the right moment.',
   },
 ]
 
@@ -26,7 +26,7 @@ export default function Services() {
     <section id="services" className="py-14 px-6 border-t border-neutral-100">
       <div className="max-w-content mx-auto section-animate">
         <p className="text-xs font-semibold uppercase tracking-widest text-neutral-400 mb-8">
-          What I build
+          What I do
         </p>
         <div className="space-y-6">
           {services.map((s) => (

@@ -92,7 +92,7 @@ export default function Hero() {
               <span className={`inline-block w-px h-3.5 bg-white ml-0.5 align-middle transition-opacity duration-75 ${cursorOn ? 'opacity-100' : 'opacity-0'}`} />
             </span>
             <span className="shrink-0 flex items-center gap-1.5 bg-white text-neutral-900 text-xs font-semibold px-4 py-2.5 rounded-xl group-hover:bg-neutral-100 transition-colors duration-150 whitespace-nowrap">
-              Get in touch
+              Free CRO audit
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M2.5 9.5L9.5 2.5M9.5 2.5H4M9.5 2.5V8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
