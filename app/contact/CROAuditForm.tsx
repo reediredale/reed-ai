@@ -5,12 +5,6 @@ import { usePostHog } from 'posthog-js/react'
 
 type FormState = 'idle' | 'loading' | 'success' | 'error'
 
-const VALUE_ITEMS = [
-  'A full review of your biggest conversion leak',
-  'Prioritised quick-win recommendations for this week',
-  'An honest take — even if traffic is the real problem',
-]
-
 export default function CROAuditForm() {
   const posthog = usePostHog()
   const [formState, setFormState] = useState<FormState>('idle')
@@ -78,20 +72,6 @@ export default function CROAuditForm() {
 
   return (
     <>
-      <div className="bg-neutral-50 border border-neutral-100 rounded-xl p-5 mb-8">
-        <p className="text-[11px] font-semibold uppercase tracking-widest text-neutral-400 mb-3">
-          What you&apos;ll get
-        </p>
-        <ul className="space-y-2.5">
-          {VALUE_ITEMS.map(item => (
-            <li key={item} className="flex items-start gap-2.5 text-sm text-neutral-700">
-              <span className="text-green-500 shrink-0 mt-px font-bold">✓</span>
-              {item}
-            </li>
-          ))}
-        </ul>
-      </div>
-
       <form onSubmit={handleSubmit} className="space-y-3">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <input
@@ -156,12 +136,12 @@ export default function CROAuditForm() {
               Sending...
             </>
           ) : (
-            'Claim my free audit →'
+            'Send message →'
           )}
         </button>
 
         <p className="text-center text-xs text-neutral-400 pt-1">
-          I audit ~3 sites a week.&nbsp; No pitch — ever. Just a straight answer.
+          I respond to every message. No pitch — ever. Just a straight answer.
         </p>
       </form>
     </>

@@ -100,7 +100,7 @@ export default function CRONonNegotiable() {
             href="/contact"
             className="inline-flex items-center gap-2 px-8 py-4 bg-green-500 hover:bg-green-400 text-white font-bold rounded-xl transition-colors duration-150 text-base shadow-lg shadow-green-500/20"
           >
-            Get your free CRO audit →
+            Contact me →
           </Link>
         </div>
 

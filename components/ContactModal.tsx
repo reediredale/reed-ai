@@ -5,12 +5,6 @@ import { usePostHog } from 'posthog-js/react'
 
 type FormState = 'idle' | 'loading' | 'success' | 'error'
 
-const VALUE_ITEMS = [
-  'A full review of your biggest conversion leak',
-  'Prioritised quick-win recommendations for this week',
-  'An honest take — even if traffic is the real problem',
-]
-
 export default function ContactModal({
   isOpen,
   onClose,
@@ -121,25 +115,11 @@ export default function ContactModal({
           ) : (
             <>
               <p className="font-display font-bold text-neutral-900 text-xl mb-1">
-                Get your FREE CRO Audit.
+                Get in touch.
               </p>
               <p className="text-neutral-500 text-sm mb-5">
-                Takes 2 minutes. Back to you within 48 hours.
+                Tell me about your business and I&apos;ll be in touch within 48 hours.
               </p>
-
-              <div className="bg-neutral-50 border border-neutral-100 rounded-xl p-4 mb-6">
-                <p className="text-[11px] font-semibold uppercase tracking-widest text-neutral-400 mb-3">
-                  What you&apos;ll get
-                </p>
-                <ul className="space-y-2.5">
-                  {VALUE_ITEMS.map((item) => (
-                    <li key={item} className="flex items-start gap-2.5 text-sm text-neutral-700">
-                      <span className="text-green-500 shrink-0 mt-px font-bold">✓</span>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
 
               <form onSubmit={handleSubmit} className="space-y-3">
                 <div className="grid grid-cols-2 gap-3">
@@ -200,12 +180,12 @@ export default function ContactModal({
                       Sending...
                     </>
                   ) : (
-                    'Claim my free audit →'
+                    'Send message →'
                   )}
                 </button>
 
                 <p className="text-center text-xs text-neutral-400 pt-1">
-                  I audit ~3 sites a week.&nbsp; No pitch — ever. Just a straight answer.
+                  I respond to every message. No pitch — ever. Just a straight answer.
                 </p>
               </form>
             </>

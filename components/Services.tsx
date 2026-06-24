@@ -57,7 +57,7 @@ export default function Services() {
             href="/contact"
             className="self-start sm:self-end text-sm font-semibold text-neutral-500 hover:text-neutral-900 underline underline-offset-4 transition-colors shrink-0"
           >
-            Get a free audit →
+            Contact me →
           </Link>
         </div>
 

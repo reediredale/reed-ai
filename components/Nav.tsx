@@ -69,7 +69,7 @@ export default function Nav() {
             onClick={() => posthog?.capture('cta_clicked', { cta: 'nav' })}
             className="text-xs font-semibold px-4 py-2 bg-green-500 hover:bg-green-400 text-white rounded-lg transition-colors duration-150 whitespace-nowrap"
           >
-            Free CRO audit
+            Contact
           </Link>
         </div>
 
@@ -80,7 +80,7 @@ export default function Nav() {
             onClick={() => posthog?.capture('cta_clicked', { cta: 'nav_mobile' })}
             className="text-xs font-semibold px-3 py-1.5 bg-green-500 text-white rounded-lg whitespace-nowrap"
           >
-            Free audit
+            Contact
           </Link>
           <button
             onClick={() => setMenuOpen(o => !o)}
@@ -117,7 +117,7 @@ export default function Nav() {
                 onClick={() => { setMenuOpen(false); posthog?.capture('cta_clicked', { cta: 'nav_mobile_menu' }) }}
                 className="flex items-center justify-center w-full py-4 bg-green-500 hover:bg-green-400 text-white text-sm font-bold rounded-xl transition-colors"
               >
-                Get your free CRO audit →
+                Contact me →
               </Link>
             </div>
           </div>

@@ -47,7 +47,7 @@ export default function Hero() {
               onClick={openModal}
               className="inline-flex items-center gap-2 px-8 py-4 bg-green-500 hover:bg-green-400 text-white font-bold rounded-xl text-base transition-colors duration-150 shadow-lg shadow-green-500/25"
             >
-              Get your free CRO audit
+              Contact me
               <svg width="14" height="14" viewBox="0 0 12 12" fill="none">
                 <path d="M2.5 9.5L9.5 2.5M9.5 2.5H4M9.5 2.5V8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>

@@ -23,11 +23,11 @@ export async function POST(req: NextRequest) {
       from: `"Reed Iredale Site" <${process.env.GMAIL_USER}>`,
       to: process.env.CONTACT_TO_EMAIL ?? 'reed@reediredale.com',
       replyTo: email,
-      subject: `CRO Audit request from ${name}${website ? ` · ${website}` : ''}`,
+      subject: `New enquiry from ${name}${website ? ` · ${website}` : ''}`,
       html: `
         <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; max-width: 600px; margin: 0 auto; background: #0a0a0a; color: #f5f5f5; padding: 40px; border-radius: 12px;">
           <div style="margin-bottom: 32px; padding-bottom: 24px; border-bottom: 1px solid #222;">
-            <h2 style="margin: 0 0 4px; font-size: 20px; font-weight: 600; color: #fff;">CRO Audit request from ${name}</h2>
+            <h2 style="margin: 0 0 4px; font-size: 20px; font-weight: 600; color: #fff;">New enquiry from ${name}</h2>
             <p style="margin: 0; color: #888; font-size: 14px;">Submitted via reediredale.com</p>
           </div>
 

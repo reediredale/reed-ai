@@ -3,16 +3,16 @@ import Footer from '@/components/Footer'
 import CROAuditForm from './CROAuditForm'
 
 export const metadata: Metadata = {
-  title: 'Free CRO Audit — Reed Iredale',
+  title: 'Contact — Reed Iredale',
   description:
-    'Request a free CRO audit. Get a full review of your biggest conversion leak plus prioritised quick-win recommendations — back to you within 48 hours.',
+    'Get in touch with Reed Iredale. Growth experimentation consultant working with brands across ecommerce, financial services, gaming, and enterprise.',
 }
 
 const VALUE_ITEMS = [
-  { icon: '🎯', text: 'Your biggest conversion leak identified' },
-  { icon: '⚡', text: 'Prioritised quick-win recommendations' },
-  { icon: '🎥', text: 'Loom walkthrough of my findings' },
-  { icon: '⏱️', text: 'Back to you within 48 hours' },
+  { icon: '⚡', text: 'Response within 48 hours' },
+  { icon: '🎯', text: 'Straight talk — no pitch, no fluff' },
+  { icon: '🌏', text: 'Working with brands across AU & internationally' },
+  { icon: '🔒', text: 'Everything discussed stays confidential' },
 ]
 
 export default function ContactPage() {
@@ -21,15 +21,15 @@ export default function ContactPage() {
       {/* Page header */}
       <section className="pt-28 pb-16 px-6 sm:px-8 text-center border-b border-neutral-100">
         <div className="max-w-3xl mx-auto">
-          <p className="text-green-500 text-[11px] font-bold uppercase tracking-widest mb-6">Free CRO Audit</p>
+          <p className="text-green-500 text-[11px] font-bold uppercase tracking-widest mb-6">Contact</p>
           <h1
             className="font-display font-bold text-neutral-900 tracking-tight mb-6"
             style={{ fontSize: 'clamp(2.5rem, 7vw, 4.5rem)', lineHeight: 1.05 }}
           >
-            Get your free<br /> CRO audit.
+            Let&apos;s work<br /> together.
           </h1>
           <p className="text-neutral-500 text-xl leading-relaxed max-w-xl mx-auto">
-            Takes 2 minutes. Back to you within 48 hours. No pitch — ever.
+            Tell me about your business. I&apos;ll be in touch within 48 hours.
           </p>
         </div>
       </section>
@@ -41,7 +41,7 @@ export default function ContactPage() {
 
             {/* What you get */}
             <div>
-              <p className="text-[11px] font-bold uppercase tracking-widest text-neutral-400 mb-6">What you get</p>
+              <p className="text-[11px] font-bold uppercase tracking-widest text-neutral-400 mb-6">What to expect</p>
               <ul className="space-y-5 mb-10">
                 {VALUE_ITEMS.map(item => (
                   <li key={item.text} className="flex items-start gap-4">

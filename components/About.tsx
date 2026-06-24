@@ -54,7 +54,7 @@ export default function About() {
               href="/contact"
               className="inline-flex items-center gap-2 px-7 py-4 bg-green-500 hover:bg-green-400 text-white font-bold rounded-xl transition-colors duration-150 text-base"
             >
-              Get your free CRO audit →
+              Contact me →
             </a>
           </div>
 

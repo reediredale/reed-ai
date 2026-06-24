@@ -144,13 +144,13 @@ export default function CaseStudiesPage() {
             Want results like these?
           </h2>
           <p className="text-neutral-500 text-lg mb-8">
-            Free audit. 48 hours turnaround. No pitch.
+            I&apos;ll be in touch within 48 hours. No pitch — ever.
           </p>
           <a
             href="/contact"
             className="inline-flex items-center gap-2 px-8 py-4 bg-green-500 hover:bg-green-400 text-white font-bold rounded-xl transition-colors duration-150 text-base"
           >
-            Get your free CRO audit →
+            Contact me →
           </a>
         </div>
       </section>
