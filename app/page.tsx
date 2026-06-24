@@ -15,6 +15,7 @@ export default function Home() {
       <Hero />
       <ToolSwitcher />
       <Services />
+      <SocialProof />
       <About />
       <Footer />
     </main>

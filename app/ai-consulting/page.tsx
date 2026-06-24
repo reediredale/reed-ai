@@ -93,7 +93,7 @@ export default function AIConsultingPage() {
           <div className="border-t border-neutral-100 pt-8">
             <a
               href="/contact"
-              className="inline-flex items-center gap-2 px-5 py-3 bg-neutral-900 hover:bg-neutral-800 text-white text-sm font-semibold rounded-xl transition-colors duration-150"
+              className="inline-flex items-center gap-2 px-5 py-3 bg-green-500 hover:bg-green-400 text-white text-sm font-semibold rounded-xl transition-colors duration-150"
             >
               Get your free audit →
             </a>

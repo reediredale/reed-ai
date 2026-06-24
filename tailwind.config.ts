@@ -13,7 +13,8 @@ const config: Config = {
         display: ['var(--font-space-grotesk)'],
       },
       maxWidth: {
-        content: '680px',
+        content: '1100px',
+        narrow:  '680px',
       },
     },
   },

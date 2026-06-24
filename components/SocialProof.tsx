@@ -1,35 +1,42 @@
-// CRO: Social proof — Cialdini's most powerful lever. Zero social proof = zero trust.
-// TODO for Reed: replace the testimonial quote + attribution with a real one.
-// The stats below are defensible from what you told me — update if you want different numbers.
-
-const stats = [
-  { value: '200+',    label: 'brands worked with' },
-  { value: '500+',   label: 'tools integrated' },
+const STATS = [
+  { value: '200+',   label: 'brands worked with' },
+  { value: '15+',    label: 'years experience' },
+  { value: '2×',     label: 'avg industry conversion rate' },
   { value: '< 48hr', label: 'audit turnaround' },
 ]
 
-// TODO: replace with a real testimonial
 const testimonial = {
-  quote:
-    "Reed audited our HubSpot and GA4 setup in 48 hours and showed us exactly where we were losing qualified leads. We'd been sitting on the answer for months.",
-  name:  '[Client name]',
-  role:  '[Role, Company]',
+  quote: "We didn't trust anyone other than Reed to work on our first ever sales funnel project.",
+  name:  'BHP',
+  role:  'UX Executive, ASX 200',
 }
 
 export default function SocialProof() {
   return (
-    <section className="px-6 pb-14">
+    <section className="bg-neutral-50 border-y border-neutral-100 py-20 px-8 section-animate">
       <div className="max-w-content mx-auto">
 
-        {/* Testimonial — Cialdini: social proof from a peer > any claim you make about yourself */}
-        <figure className="border border-neutral-200 rounded-xl p-5 bg-white">
-          <blockquote className="text-sm text-neutral-700 leading-relaxed mb-4">
+        {/* Stats */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 mb-16">
+          {STATS.map((stat) => (
+            <div key={stat.label} className="text-center">
+              <p className="font-display font-bold text-4xl sm:text-5xl text-neutral-900 mb-2">
+                {stat.value}
+              </p>
+              <p className="text-neutral-500 text-sm">{stat.label}</p>
+            </div>
+          ))}
+        </div>
+
+        {/* Testimonial */}
+        <figure className="border border-neutral-200 rounded-2xl p-8 bg-white max-w-2xl mx-auto text-center shadow-sm">
+          <blockquote className="font-display font-medium text-neutral-700 text-lg leading-relaxed mb-6">
             &ldquo;{testimonial.quote}&rdquo;
           </blockquote>
-          <figcaption className="flex items-center gap-3">
-            <div className="w-7 h-7 rounded-full bg-neutral-200 shrink-0" />
-            <div>
-              <p className="text-xs font-semibold text-neutral-900">{testimonial.name}</p>
+          <figcaption className="flex items-center justify-center gap-3">
+            <div className="w-8 h-8 rounded-full bg-neutral-200 shrink-0" />
+            <div className="text-left">
+              <p className="text-sm font-semibold text-neutral-900">{testimonial.name}</p>
               <p className="text-xs text-neutral-500">{testimonial.role}</p>
             </div>
           </figcaption>

@@ -192,7 +192,7 @@ export default function ContactModal({
                 <button
                   type="submit"
                   disabled={formState === 'loading'}
-                  className="w-full inline-flex items-center justify-center gap-2 px-5 py-3 bg-neutral-900 hover:bg-neutral-700 disabled:opacity-50 disabled:cursor-not-allowed text-white text-sm font-semibold rounded-xl transition-colors duration-150"
+                  className="w-full inline-flex items-center justify-center gap-2 px-5 py-3 bg-green-500 hover:bg-green-400 disabled:opacity-50 disabled:cursor-not-allowed text-white text-sm font-semibold rounded-xl transition-colors duration-150"
                 >
                   {formState === 'loading' ? (
                     <>
