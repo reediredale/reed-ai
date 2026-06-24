@@ -1,25 +1,34 @@
 import Link from 'next/link'
 
-const TRUTHS = [
-  {
-    stat: '97%',
-    label: 'of your visitors leave without converting',
-    detail:
-      'The average website converts less than 3% of traffic. That means 97 of every 100 people you\'ve paid to acquire — leave empty-handed.',
-  },
-  {
-    stat: '10×',
-    label: 'average return for every $1 spent on CRO',
-    detail:
-      'Forrester research puts the average ROI on CRO investment at 10:1. Yet most businesses spend 90% of their budget on traffic and almost nothing on converting it.',
-  },
-  {
-    stat: '0',
-    label: 'extra ad spend required',
-    detail:
-      'CRO works on the traffic you already have. Fix the funnel first — then scale. Every dollar you spend acquiring traffic is worth more once your conversion rate improves.',
-  },
+const ROWS = [
+  { metric: 'Low Financial Cost',   reed: true,  media: false, creative: false },
+  { metric: 'Minimal Guesswork',    reed: true,  media: false, creative: false },
+  { metric: 'Quick Results',        reed: true,  media: false, creative: true  },
+  { metric: 'Low Ongoing Costs',    reed: true,  media: false, creative: false },
+  { metric: 'Easily Scalable',      reed: true,  media: true,  creative: true  },
+  { metric: 'High ROI',             reed: true,  media: false, creative: false },
+  { metric: 'No Traffic Dependency',reed: true,  media: false, creative: false },
 ]
+
+function Check() {
+  return (
+    <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-green-500/15">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M3 8l3.5 3.5L13 4.5" stroke="#22c55e" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+      </svg>
+    </span>
+  )
+}
+
+function Cross() {
+  return (
+    <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-white/5">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+        <path d="M3 3l8 8M11 3l-8 8" stroke="#ffffff30" strokeWidth="1.75" strokeLinecap="round"/>
+      </svg>
+    </span>
+  )
+}
 
 export default function CRONonNegotiable() {
   return (
@@ -27,60 +36,71 @@ export default function CRONonNegotiable() {
       <div className="max-w-content mx-auto">
 
         {/* Header */}
-        <div className="max-w-3xl mb-16">
-          <p className="text-green-400 text-[11px] font-bold uppercase tracking-widest mb-6">
+        <div className="text-center max-w-2xl mx-auto mb-14">
+          <p className="text-green-400 text-[11px] font-bold uppercase tracking-widest mb-5">
             The case for CRO
           </p>
           <h2
-            className="font-display font-bold text-white tracking-tight mb-6"
-            style={{ fontSize: 'clamp(2.25rem, 6vw, 4rem)', lineHeight: 1.05 }}
+            className="font-display font-bold text-white tracking-tight mb-4"
+            style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)', lineHeight: 1.1 }}
           >
-            CRO is{' '}
-            <span className="italic text-white/40">non‑negotiable.</span>
+            Conversion rate optimisation<br className="hidden sm:block" /> is non-negotiable.
           </h2>
-          <p className="text-white/55 leading-relaxed" style={{ fontSize: '1.2rem' }}>
-            You&apos;re not losing to your competitors. You&apos;re losing to your own funnel.
-            Most businesses throw money at traffic while their conversion rate stays broken.
-            The businesses that win fix the leak before they open the tap.
+          <p className="text-white/50 text-lg">
+            Maximise your existing traffic and scale profitably.
           </p>
         </div>
 
-        {/* Stats / truths */}
-        <div className="grid sm:grid-cols-3 gap-px bg-white/10 rounded-2xl overflow-hidden mb-16">
-          {TRUTHS.map((t) => (
-            <div
-              key={t.stat}
-              className="bg-slate-900 p-8 sm:p-10 flex flex-col gap-4"
-            >
-              <p
-                className="font-display font-bold text-green-400 leading-none"
-                style={{ fontSize: 'clamp(3rem, 6vw, 5rem)' }}
-              >
-                {t.stat}
-              </p>
-              <p className="text-white font-display font-bold text-lg leading-snug">
-                {t.label}
-              </p>
-              <p className="text-white/45 leading-relaxed text-sm">
-                {t.detail}
-              </p>
-            </div>
-          ))}
+        {/* Table */}
+        <div className="overflow-x-auto">
+          <table className="w-full min-w-[520px]">
+            <thead>
+              <tr className="border-b border-white/10">
+                <th className="text-left py-4 pr-6 text-white/30 text-xs font-bold uppercase tracking-widest w-1/2">
+                  Metric
+                </th>
+                <th className="py-4 px-4 text-center">
+                  <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-500/10 border border-green-500/25">
+                    <span className="w-2 h-2 rounded-full bg-green-400 shrink-0" />
+                    <span className="text-green-400 text-sm font-bold whitespace-nowrap">Reed Iredale</span>
+                  </span>
+                </th>
+                <th className="py-4 px-4 text-center text-white/30 text-xs font-bold uppercase tracking-widest whitespace-nowrap">
+                  Media Buying
+                </th>
+                <th className="py-4 px-4 text-center text-white/30 text-xs font-bold uppercase tracking-widest whitespace-nowrap">
+                  New Ad Creatives
+                </th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-white/5">
+              {ROWS.map((row) => (
+                <tr key={row.metric} className="group hover:bg-white/[0.03] transition-colors">
+                  <td className="py-5 pr-6 text-white/70 font-medium" style={{ fontSize: '1.05rem' }}>
+                    {row.metric}
+                  </td>
+                  <td className="py-5 px-4 text-center">
+                    {row.reed ? <Check /> : <Cross />}
+                  </td>
+                  <td className="py-5 px-4 text-center">
+                    {row.media ? <Check /> : <Cross />}
+                  </td>
+                  <td className="py-5 px-4 text-center">
+                    {row.creative ? <Check /> : <Cross />}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
 
-        {/* Closing statement + CTA */}
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-8 border-t border-white/10 pt-12">
-          <p
-            className="font-display font-bold text-white/80 max-w-lg leading-snug"
-            style={{ fontSize: 'clamp(1.25rem, 3vw, 1.75rem)' }}
-          >
-            &ldquo;Every visitor you&apos;re not converting is money you&apos;ve already paid for.&rdquo;
-          </p>
+        {/* CTA */}
+        <div className="mt-12 text-center">
           <Link
             href="/contact"
-            className="shrink-0 inline-flex items-center gap-2 px-8 py-4 bg-green-500 hover:bg-green-400 text-white font-bold rounded-xl transition-colors duration-150 text-base shadow-lg shadow-green-500/20"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-green-500 hover:bg-green-400 text-white font-bold rounded-xl transition-colors duration-150 text-base shadow-lg shadow-green-500/20"
           >
-            Fix my funnel →
+            Get your free CRO audit →
           </Link>
         </div>
 
