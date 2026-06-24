@@ -9,11 +9,11 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['var(--font-inter)'],
-        display: ['var(--font-space-grotesk)'],
+        sans:    ['var(--font-averta)', 'system-ui', 'sans-serif'],
+        display: ['var(--font-averta)', 'system-ui', 'sans-serif'],
       },
       maxWidth: {
-        content: '1100px',
+        content: '1200px',
         narrow:  '680px',
       },
     },

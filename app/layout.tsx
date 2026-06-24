@@ -1,17 +1,14 @@
 import type { Metadata } from 'next'
-import { Inter, Space_Grotesk } from 'next/font/google'
+import localFont from 'next/font/local'
 import './globals.css'
 import { Providers } from './providers'
 import Nav from '@/components/Nav'
 
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter',
-})
-
-const spaceGrotesk = Space_Grotesk({
-  subsets: ['latin'],
-  variable: '--font-space-grotesk',
+const averta = localFont({
+  src: './fonts/averta-pe-vf.woff2',
+  variable: '--font-averta',
+  display: 'swap',
+  weight: '100 900',
 })
 
 export const metadata: Metadata = {
@@ -31,7 +28,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${inter.variable} ${spaceGrotesk.variable}`}>
+    <html lang="en" className={averta.variable}>
       <body className="font-sans">
         <Providers>
           <Nav />
