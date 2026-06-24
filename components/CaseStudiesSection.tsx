@@ -105,19 +105,17 @@ export default function CaseStudiesSection() {
       <div className="max-w-content mx-auto">
 
         {/* Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-14">
-          <div>
-            <p className="text-green-500 text-[11px] font-bold uppercase tracking-widest mb-4">Results</p>
-            <h2
-              className="font-display font-bold text-neutral-900 tracking-tight"
-              style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)', lineHeight: 1.1 }}
-            >
-              Brands that trusted the<br className="hidden sm:block" /> process. Numbers that proved it.
-            </h2>
-          </div>
+        <div className="text-center mb-14">
+          <p className="text-green-500 text-[11px] font-bold uppercase tracking-widest mb-4">Results</p>
+          <h2
+            className="font-display font-bold text-neutral-900 tracking-tight mb-4"
+            style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)', lineHeight: 1.1 }}
+          >
+            Brands that trusted the process.<br className="hidden sm:block" /> Numbers that proved it.
+          </h2>
           <Link
             href="/case-studies"
-            className="self-start sm:self-end text-sm font-semibold text-neutral-500 hover:text-neutral-900 underline underline-offset-4 transition-colors shrink-0"
+            className="text-sm font-semibold text-neutral-500 hover:text-neutral-900 underline underline-offset-4 transition-colors"
           >
             View all case studies →
           </Link>
