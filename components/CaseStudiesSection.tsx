@@ -3,12 +3,16 @@
 import Link from 'next/link'
 import { useState } from 'react'
 
+// To add a logo: drop the file into public/logos/ using the filename in the `logos` array first.
+// Supported formats: .png, .svg, .webp
+// e.g. public/logos/bhp-logo.png → works immediately, no code change needed.
 const CASES = [
   {
     client: 'Australian Retirement Trust',
     logos: [
+      '/logos/art-logo.png',
+      '/logos/art-logo.svg',
       'https://logo.clearbit.com/australianretirementtrust.com.au',
-      'https://www.australianretirementtrust.com.au/content/dam/art/images/logo/art-logo.svg',
     ],
     category: 'Superannuation · Financial Services',
     headline: '2× industry-average conversion rate',
@@ -16,6 +20,8 @@ const CASES = [
   {
     client: 'Ladbrokes',
     logos: [
+      '/logos/ladbrokes-logo.png',
+      '/logos/ladbrokes-logo.svg',
       'https://logo.clearbit.com/ladbrokes.com',
       'https://logo.clearbit.com/ladbrokes.com.au',
     ],
@@ -25,8 +31,9 @@ const CASES = [
   {
     client: 'BHP',
     logos: [
+      '/logos/bhp-logo.png',
+      '/logos/bhp-logo.svg',
       'https://logo.clearbit.com/bhp.com',
-      'https://www.bhp.com/themes/custom/bhp/dist/images/bhp-logo.svg',
     ],
     category: 'Enterprise · ASX 200',
     headline: '75,000 workers enabled globally',
@@ -34,6 +41,8 @@ const CASES = [
   {
     client: 'Petzyo',
     logos: [
+      '/logos/petzyo-logo.png',
+      '/logos/petzyo-logo.svg',
       'https://logo.clearbit.com/petzyo.com.au',
     ],
     category: 'DTC Ecommerce',
@@ -42,6 +51,8 @@ const CASES = [
   {
     client: 'Oscar Wylee',
     logos: [
+      '/logos/oscarwylee-logo.png',
+      '/logos/oscarwylee-logo.svg',
       'https://logo.clearbit.com/oscarwylee.com.au',
       'https://logo.clearbit.com/oscarwylee.com',
     ],
@@ -51,6 +62,8 @@ const CASES = [
   {
     client: 'loans.com.au',
     logos: [
+      '/logos/loans-logo.png',
+      '/logos/loans-logo.svg',
       'https://logo.clearbit.com/loans.com.au',
     ],
     category: 'Financial Services · Fintech',
