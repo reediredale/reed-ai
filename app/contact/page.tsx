@@ -8,25 +8,69 @@ export const metadata: Metadata = {
     'Request a free CRO audit. Get a full review of your biggest conversion leak plus prioritised quick-win recommendations — back to you within 48 hours.',
 }
 
+const VALUE_ITEMS = [
+  { icon: '🎯', text: 'Your biggest conversion leak identified' },
+  { icon: '⚡', text: 'Prioritised quick-win recommendations' },
+  { icon: '🎥', text: 'Loom walkthrough of my findings' },
+  { icon: '⏱️', text: 'Back to you within 48 hours' },
+]
+
 export default function ContactPage() {
   return (
     <main>
-      <section className="pt-28 pb-16 px-6">
-        <div className="max-w-content mx-auto">
-          <p className="text-xs font-semibold uppercase tracking-widest text-neutral-400 mb-8">
-            Free CRO Audit
-          </p>
-
-          <h1 className="font-display text-3xl sm:text-[2.4rem] font-bold text-neutral-900 leading-[1.15] tracking-tight mb-4">
-            Get your FREE<br className="hidden sm:block" /> CRO Audit.
+      {/* Page header */}
+      <section className="pt-28 pb-16 px-6 sm:px-8 text-center border-b border-neutral-100">
+        <div className="max-w-3xl mx-auto">
+          <p className="text-green-500 text-[11px] font-bold uppercase tracking-widest mb-6">Free CRO Audit</p>
+          <h1
+            className="font-display font-bold text-neutral-900 tracking-tight mb-6"
+            style={{ fontSize: 'clamp(2.5rem, 7vw, 4.5rem)', lineHeight: 1.05 }}
+          >
+            Get your free<br /> CRO audit.
           </h1>
-          <p className="text-neutral-500 text-base leading-relaxed mb-10">
-            Takes 2 minutes. Back to you within 48 hours.
+          <p className="text-neutral-500 text-xl leading-relaxed max-w-xl mx-auto">
+            Takes 2 minutes. Back to you within 48 hours. No pitch — ever.
           </p>
-
-          <CROAuditForm />
         </div>
       </section>
+
+      {/* Form + Value */}
+      <section className="py-20 px-6 sm:px-8">
+        <div className="max-w-content mx-auto">
+          <div className="grid sm:grid-cols-2 gap-12 items-start max-w-4xl mx-auto">
+
+            {/* What you get */}
+            <div>
+              <p className="text-[11px] font-bold uppercase tracking-widest text-neutral-400 mb-6">What you get</p>
+              <ul className="space-y-5 mb-10">
+                {VALUE_ITEMS.map(item => (
+                  <li key={item.text} className="flex items-start gap-4">
+                    <span className="text-xl mt-0.5">{item.icon}</span>
+                    <p className="text-neutral-700 font-medium" style={{ fontSize: '1.1rem' }}>{item.text}</p>
+                  </li>
+                ))}
+              </ul>
+
+              <figure className="border-l-4 border-green-500 pl-6">
+                <blockquote
+                  className="font-display font-bold text-neutral-800 italic leading-snug mb-3"
+                  style={{ fontSize: 'clamp(1.1rem, 2.5vw, 1.4rem)' }}
+                >
+                  &ldquo;We didn&apos;t trust anyone other than Reed to work on our first ever sales funnel project.&rdquo;
+                </blockquote>
+                <figcaption className="text-sm text-neutral-500">UX Executive, BHP (ASX 200)</figcaption>
+              </figure>
+            </div>
+
+            {/* Form */}
+            <div>
+              <CROAuditForm />
+            </div>
+
+          </div>
+        </div>
+      </section>
+
       <Footer />
     </main>
   )

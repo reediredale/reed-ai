@@ -15,7 +15,6 @@ export default function Home() {
       <IntentTracker />
       <Hero />
       <ClientLogos />
-      <ToolSwitcher />
       <Services />
       <SocialProof />
       <About />
