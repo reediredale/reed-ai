@@ -10,8 +10,9 @@ const CASES = [
   {
     client: 'Australian Retirement Trust',
     logos: [
-      '/logos/art-logo.png',
       '/logos/art-logo.svg',
+      '/logos/art-logo.png',
+      '/logos/art-logo.webp',
       'https://logo.clearbit.com/australianretirementtrust.com.au',
     ],
     category: 'Superannuation · Financial Services',
@@ -20,8 +21,9 @@ const CASES = [
   {
     client: 'Ladbrokes',
     logos: [
-      '/logos/ladbrokes-logo.png',
       '/logos/ladbrokes-logo.svg',
+      '/logos/ladbrokes-logo.png',
+      '/logos/ladbrokes-logo.webp',
       'https://logo.clearbit.com/ladbrokes.com',
       'https://logo.clearbit.com/ladbrokes.com.au',
     ],
@@ -31,8 +33,9 @@ const CASES = [
   {
     client: 'BHP',
     logos: [
-      '/logos/bhp-logo.png',
       '/logos/bhp-logo.svg',
+      '/logos/bhp-logo.png',
+      '/logos/bhp-logo.webp',
       'https://logo.clearbit.com/bhp.com',
     ],
     category: 'Enterprise · ASX 200',
@@ -41,8 +44,9 @@ const CASES = [
   {
     client: 'Petzyo',
     logos: [
-      '/logos/petzyo-logo.png',
       '/logos/petzyo-logo.svg',
+      '/logos/petzyo-logo.png',
+      '/logos/petzyo-logo.webp',
       'https://logo.clearbit.com/petzyo.com.au',
     ],
     category: 'DTC Ecommerce',
@@ -51,8 +55,9 @@ const CASES = [
   {
     client: 'Oscar Wylee',
     logos: [
-      '/logos/oscarwylee-logo.png',
       '/logos/oscarwylee-logo.svg',
+      '/logos/oscarwylee-logo.png',
+      '/logos/oscarwylee-logo.webp',
       'https://logo.clearbit.com/oscarwylee.com.au',
       'https://logo.clearbit.com/oscarwylee.com',
     ],
@@ -62,8 +67,9 @@ const CASES = [
   {
     client: 'loans.com.au',
     logos: [
-      '/logos/loans-logo.png',
       '/logos/loans-logo.svg',
+      '/logos/loans-logo.png',
+      '/logos/loans-logo.webp',
       'https://logo.clearbit.com/loans.com.au',
     ],
     category: 'Financial Services · Fintech',
@@ -87,7 +93,7 @@ function BrandLogo({ logos, alt }: { logos: string[]; alt: string }) {
     <img
       src={logos[index]}
       alt={alt}
-      className="h-8 w-auto object-contain max-w-[160px]"
+      style={{ height: '32px', width: 'auto', maxWidth: '160px', objectFit: 'contain', filter: 'brightness(0)' }}
       onError={() => setIndex(i => i + 1)}
     />
   )
