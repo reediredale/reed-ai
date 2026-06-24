@@ -39,13 +39,14 @@ export default function Hero() {
           {/* Headline */}
           <h1 className="font-display font-bold text-white tracking-tight leading-[1.05] mb-6"
               style={{ fontSize: 'clamp(2.5rem, 7vw, 5rem)' }}>
-            Your best growth lever<br className="hidden sm:block" /> is already in your data.
+            Double your conversions<br className="hidden sm:block" /> without doubling{' '}
+            <span className="text-green-400">your budget.</span>
           </h1>
 
           {/* Sub */}
           <p className="text-white/50 text-lg sm:text-xl leading-relaxed mb-10 max-w-xl mx-auto">
-            I run structured experiments — A/B tests, funnel analyses, attribution frameworks —
-            that find exactly which levers move your number.
+            I run structured growth experiments that find the revenue hiding in your funnel —
+            the leaks your analytics aren&apos;t showing you. No extra ad spend required.
           </p>
 
           {/* CTA */}

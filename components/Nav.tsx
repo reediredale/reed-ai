@@ -38,11 +38,11 @@ export default function Nav() {
       <div className="max-w-content mx-auto px-6 sm:px-8 h-16 flex items-center justify-between">
         <Link
           href="/"
-          className={`font-display font-bold text-sm tracking-tight transition-colors duration-300 hover:opacity-70 ${
+          className={`font-display font-extrabold text-lg tracking-tight transition-colors duration-300 hover:opacity-70 ${
             dark ? 'text-white' : 'text-neutral-900'
           }`}
         >
-          Reed Iredale
+          Reed<span className={dark ? 'text-green-400' : 'text-green-500'}> Iredale</span>
         </Link>
 
         {/* Desktop */}
