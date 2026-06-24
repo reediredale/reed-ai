@@ -1,9 +1,9 @@
 import Hero from '@/components/Hero'
 import ClientLogos from '@/components/ClientLogos'
 import CRONonNegotiable from '@/components/CRONonNegotiable'
-import SocialProof from '@/components/SocialProof'
-import ToolSwitcher from '@/components/ToolSwitcher'
 import Services from '@/components/Services'
+import CaseStudiesSection from '@/components/CaseStudiesSection'
+import SocialProof from '@/components/SocialProof'
 import About from '@/components/About'
 import Footer from '@/components/Footer'
 import IntentTracker from '@/components/IntentTracker'
@@ -18,6 +18,7 @@ export default function Home() {
       <ClientLogos />
       <CRONonNegotiable />
       <Services />
+      <CaseStudiesSection />
       <SocialProof />
       <About />
       <Footer />
