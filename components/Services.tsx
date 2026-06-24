@@ -27,11 +27,12 @@ const services = [
 
 export default function Services() {
   return (
-    <section id="services" className="py-20 px-8 bg-white border-t border-neutral-100">
+    <section id="services" className="py-20 px-6 sm:px-8 bg-white border-t border-neutral-100">
       <div className="max-w-content mx-auto section-animate">
-        <div className="text-center mb-12">
-          <p className="text-green-500 text-xs font-bold uppercase tracking-widest mb-3">What I do</p>
-          <h2 className="font-display text-3xl sm:text-4xl font-bold text-neutral-900">
+        <div className="text-center mb-14">
+          <p className="text-green-500 text-[11px] font-bold uppercase tracking-widest mb-4">What I do</p>
+          <h2 className="font-display font-bold text-neutral-900 tracking-tight"
+              style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)', lineHeight: 1.1 }}>
             How I grow your conversions
           </h2>
         </div>
@@ -39,12 +40,12 @@ export default function Services() {
           {services.map((s) => (
             <div
               key={s.title}
-              className="p-7 border border-neutral-200 rounded-2xl bg-white hover:shadow-md transition-shadow duration-200"
+              className="p-8 border border-neutral-200 rounded-2xl bg-white hover:shadow-md transition-shadow duration-200"
             >
-              <div className="w-11 h-11 flex items-center justify-center bg-green-50 rounded-xl mb-5 text-xl">
+              <div className="w-12 h-12 flex items-center justify-center bg-green-50 rounded-xl mb-5 text-2xl">
                 {s.icon}
               </div>
-              <h3 className="font-display font-bold text-neutral-900 text-base mb-2">{s.title}</h3>
+              <h3 className="font-display font-bold text-neutral-900 text-xl mb-3">{s.title}</h3>
               <p className="text-neutral-500 text-sm leading-relaxed">{s.description}</p>
             </div>
           ))}

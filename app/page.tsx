@@ -1,4 +1,5 @@
 import Hero from '@/components/Hero'
+import ClientLogos from '@/components/ClientLogos'
 import SocialProof from '@/components/SocialProof'
 import ToolSwitcher from '@/components/ToolSwitcher'
 import Services from '@/components/Services'
@@ -13,6 +14,7 @@ export default function Home() {
       <UTMTracker />
       <IntentTracker />
       <Hero />
+      <ClientLogos />
       <ToolSwitcher />
       <Services />
       <SocialProof />

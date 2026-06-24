@@ -6,16 +6,17 @@ const FACTS = [
 
 export default function About() {
   return (
-    <section id="about" className="py-20 px-8 bg-white border-t border-neutral-100">
+    <section id="about" className="py-20 px-6 sm:px-8 bg-white border-t border-neutral-100">
       <div className="max-w-content mx-auto section-animate">
-        <div className="grid sm:grid-cols-2 gap-16 items-start">
+        <div className="grid sm:grid-cols-2 gap-14 sm:gap-20 items-start">
 
           <div>
-            <p className="text-green-500 text-xs font-bold uppercase tracking-widest mb-4">About Reed</p>
-            <h2 className="font-display text-3xl sm:text-4xl font-bold text-neutral-900 mb-6">
-              15+ years turning<br className="hidden sm:block" /> data into growth.
+            <p className="text-green-500 text-[11px] font-bold uppercase tracking-widest mb-5">About Reed</p>
+            <h2 className="font-display font-bold text-neutral-900 tracking-tight mb-7"
+                style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)', lineHeight: 1.1 }}>
+              15+ years turning<br /> data into growth.
             </h2>
-            <div className="space-y-4 text-neutral-600 text-sm leading-relaxed">
+            <div className="space-y-5 text-neutral-600 leading-relaxed" style={{ fontSize: '1.05rem' }}>
               <p>
                 Most businesses run advertising without optimising conversions. It&apos;s like
                 turning on a tap without fixing the drain — you&apos;re spending more to fill the
@@ -28,27 +29,30 @@ export default function About() {
               </p>
               <p>
                 Trained in Data Science at{' '}
-                <span className="text-neutral-900 font-semibold">RMIT University</span> and{' '}
-                <span className="text-neutral-900 font-semibold">UTS</span>. Based in Brisbane, Australia.
+                <span className="text-neutral-900 font-bold">RMIT University</span> and{' '}
+                <span className="text-neutral-900 font-bold">UTS</span>. Based in Brisbane, Australia.
               </p>
             </div>
           </div>
 
           <div>
-            <div className="space-y-1 mb-8">
+            <div className="space-y-0 mb-10">
               {FACTS.map(item => (
                 <div
                   key={item.label}
-                  className="flex items-center justify-between py-4 border-b border-neutral-100"
+                  className="flex items-center justify-between py-5 border-b border-neutral-100"
                 >
-                  <span className="text-neutral-500 text-sm">{item.label}</span>
-                  <span className="font-display font-bold text-neutral-900 text-2xl">{item.value}</span>
+                  <span className="text-neutral-500 text-base">{item.label}</span>
+                  <span className="font-display font-bold text-neutral-900"
+                        style={{ fontSize: 'clamp(1.75rem, 3vw, 2.5rem)' }}>
+                    {item.value}
+                  </span>
                 </div>
               ))}
             </div>
             <a
               href="/contact"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-green-500 hover:bg-green-400 text-white text-sm font-semibold rounded-xl transition-colors duration-150"
+              className="inline-flex items-center gap-2 px-7 py-4 bg-green-500 hover:bg-green-400 text-white font-bold rounded-xl transition-colors duration-150 text-base"
             >
               Get your free CRO audit →
             </a>

@@ -13,31 +13,37 @@ const testimonial = {
 
 export default function SocialProof() {
   return (
-    <section className="bg-neutral-50 border-y border-neutral-100 py-20 px-8 section-animate">
+    <section className="bg-neutral-50 border-y border-neutral-100 py-20 px-6 sm:px-8 section-animate">
       <div className="max-w-content mx-auto">
 
         {/* Stats */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 mb-16">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-10 mb-20">
           {STATS.map((stat) => (
             <div key={stat.label} className="text-center">
-              <p className="font-display font-bold text-4xl sm:text-5xl text-neutral-900 mb-2">
+              <p className="font-display font-bold text-neutral-900 mb-2"
+                 style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)' }}>
                 {stat.value}
               </p>
-              <p className="text-neutral-500 text-sm">{stat.label}</p>
+              <p className="text-neutral-500 text-sm leading-snug">{stat.label}</p>
             </div>
           ))}
         </div>
 
-        {/* Testimonial */}
-        <figure className="border border-neutral-200 rounded-2xl p-8 bg-white max-w-2xl mx-auto text-center shadow-sm">
-          <blockquote className="font-display font-medium text-neutral-700 text-lg leading-relaxed mb-6">
-            &ldquo;{testimonial.quote}&rdquo;
+        {/* Blockquote */}
+        <figure className="bg-white rounded-2xl p-10 sm:p-16 max-w-4xl mx-auto text-center shadow-sm border border-neutral-200">
+          <div className="font-serif text-green-500 leading-none mb-6 select-none"
+               style={{ fontSize: '6rem', lineHeight: 0.8 }}>
+            &ldquo;
+          </div>
+          <blockquote className="font-display font-bold text-neutral-900 leading-tight mb-10"
+                      style={{ fontSize: 'clamp(1.5rem, 3.5vw, 2.5rem)' }}>
+            {testimonial.quote}
           </blockquote>
-          <figcaption className="flex items-center justify-center gap-3">
-            <div className="w-8 h-8 rounded-full bg-neutral-200 shrink-0" />
+          <figcaption className="flex items-center justify-center gap-4">
+            <div className="w-10 h-10 rounded-full bg-neutral-200 shrink-0" />
             <div className="text-left">
-              <p className="text-sm font-semibold text-neutral-900">{testimonial.name}</p>
-              <p className="text-xs text-neutral-500">{testimonial.role}</p>
+              <p className="text-base font-bold text-neutral-900">{testimonial.name}</p>
+              <p className="text-sm text-neutral-500">{testimonial.role}</p>
             </div>
           </figcaption>
         </figure>
