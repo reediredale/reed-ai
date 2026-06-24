@@ -1,66 +1,60 @@
+'use client'
+
 import Link from 'next/link'
-import Image from 'next/image'
+import { useState } from 'react'
 
 const CASES = [
   {
     client: 'Australian Retirement Trust',
     logo: 'https://logo.clearbit.com/australianretirementtrust.com.au',
+    fallbackLogo: 'https://logo.clearbit.com/art.com.au',
     category: 'Superannuation · Financial Services',
     headline: '2× industry-average conversion rate',
-    stats: [
-      { value: '2×',       label: 'industry avg CVR' },
-      { value: 'National', label: 'reach' },
-    ],
   },
   {
     client: 'Ladbrokes',
     logo: 'https://logo.clearbit.com/ladbrokes.com.au',
+    fallbackLogo: 'https://logo.clearbit.com/ladbrokes.com',
     category: 'Gaming · Sports Betting',
     headline: '36% revenue increase',
-    stats: [
-      { value: '36%', label: 'revenue increase' },
-      { value: '29%', label: 'Day 1 lift' },
-    ],
   },
   {
     client: 'BHP',
     logo: 'https://logo.clearbit.com/bhp.com',
+    fallbackLogo: null,
     category: 'Enterprise · ASX 200',
     headline: '75,000 workers enabled globally',
-    stats: [
-      { value: '75k',    label: 'workers enabled' },
-      { value: 'Global', label: 'rollout' },
-    ],
-  },
-  {
-    client: 'Petzyo',
-    logo: 'https://logo.clearbit.com/petzyo.com.au',
-    category: 'DTC Ecommerce',
-    headline: '100% MRR increase in 90 days',
-    stats: [
-      { value: '100%', label: 'MRR increase' },
-      { value: '90',   label: 'days' },
-    ],
-  },
-  {
-    client: 'Healthcare DTC',
-    logo: null,
-    category: 'Healthcare · Teeth Straightening',
-    headline: 'Day 1 profitability',
-    stats: [
-      { value: 'Day 1', label: 'profitability' },
-    ],
-  },
-  {
-    client: 'Dating App',
-    logo: null,
-    category: 'Consumer App · MVP',
-    headline: 'Market-ready MVP in 14 days',
-    stats: [
-      { value: '14', label: 'day delivery' },
-    ],
   },
 ]
+
+function BrandLogo({ src, fallback, alt }: { src: string; fallback: string | null; alt: string }) {
+  const [imgSrc, setImgSrc] = useState(src)
+  const [failed, setFailed] = useState(false)
+
+  if (failed) {
+    return (
+      <span className="font-display font-extrabold text-neutral-900 text-lg tracking-tight">
+        {alt}
+      </span>
+    )
+  }
+
+  return (
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src={imgSrc}
+      alt={alt}
+      className="h-8 w-auto object-contain max-w-[140px]"
+      onError={() => {
+        if (fallback && imgSrc !== fallback) {
+          setImgSrc(fallback)
+        } else {
+          setFailed(true)
+        }
+      }}
+    />
+  )
+}
 
 export default function CaseStudiesSection() {
   return (
@@ -86,53 +80,24 @@ export default function CaseStudiesSection() {
           </Link>
         </div>
 
-        {/* Cards — 3 per row */}
+        {/* Cards */}
         <div className="grid sm:grid-cols-3 gap-5">
           {CASES.map((c) => (
             <div
               key={c.client}
-              className="bg-white border border-neutral-200 rounded-2xl p-7 flex flex-col gap-5 hover:shadow-md transition-shadow duration-200"
+              className="bg-white border border-neutral-200 rounded-2xl p-8 flex flex-col gap-6 hover:shadow-md transition-shadow duration-200"
             >
-              {/* Logo or client name */}
               <div className="h-8 flex items-center">
-                {c.logo ? (
-                  <Image
-                    src={c.logo}
-                    alt={c.client}
-                    width={120}
-                    height={32}
-                    className="h-7 w-auto object-contain"
-                    unoptimized
-                  />
-                ) : (
-                  <span className="font-display font-bold text-neutral-900 text-base">{c.client}</span>
-                )}
+                <BrandLogo src={c.logo} fallback={c.fallbackLogo} alt={c.client} />
               </div>
 
-              {/* Category */}
               <p className="text-[11px] font-bold uppercase tracking-widest text-neutral-400">
                 {c.category}
               </p>
 
-              {/* Headline badge */}
-              <span className="self-start inline-flex items-center px-3 py-1.5 rounded-full bg-green-50 border border-green-200 text-xs font-bold text-green-700">
+              <span className="self-start inline-flex items-center px-3 py-1.5 rounded-full bg-green-50 border border-green-200 text-sm font-bold text-green-700">
                 {c.headline}
               </span>
-
-              {/* Stats */}
-              <div className="flex gap-6 pt-3 border-t border-neutral-100 mt-auto">
-                {c.stats.map(s => (
-                  <div key={s.label}>
-                    <p
-                      className="font-display font-bold text-neutral-900 leading-none mb-1"
-                      style={{ fontSize: 'clamp(1.5rem, 3vw, 2rem)' }}
-                    >
-                      {s.value}
-                    </p>
-                    <p className="text-xs text-neutral-500">{s.label}</p>
-                  </div>
-                ))}
-              </div>
             </div>
           ))}
         </div>
