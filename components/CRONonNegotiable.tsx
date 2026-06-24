@@ -36,7 +36,7 @@ export default function CRONonNegotiable() {
       <div className="max-w-content mx-auto">
 
         {/* Header */}
-        <div className="text-center max-w-2xl mx-auto mb-14">
+        <div className="text-center max-w-5xl mx-auto mb-14">
           <p className="text-green-400 text-[11px] font-bold uppercase tracking-widest mb-5">
             The case for CRO
           </p>

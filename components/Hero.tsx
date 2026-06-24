@@ -17,7 +17,7 @@ export default function Hero() {
   return (
     <>
       <section className="bg-slate-900 pt-28 sm:pt-36 pb-24 px-6 sm:px-8 text-center">
-        <div className="max-w-3xl mx-auto">
+        <div className="max-w-5xl mx-auto">
 
           {/* Avatar */}
           <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden border-4 border-white/20 mx-auto mb-5 shadow-2xl shadow-black/40">
