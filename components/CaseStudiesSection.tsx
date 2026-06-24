@@ -7,8 +7,6 @@ const CASES = [
     logo: 'https://logo.clearbit.com/australianretirementtrust.com.au',
     category: 'Superannuation · Financial Services',
     headline: '2× industry-average conversion rate',
-    description:
-      'Multi-funnel experimentation doubled the industry average conversion rate for super acquisition — expanding from QLD-only to a national presence.',
     stats: [
       { value: '2×',       label: 'industry avg CVR' },
       { value: 'National', label: 'reach' },
@@ -19,8 +17,6 @@ const CASES = [
     logo: 'https://logo.clearbit.com/ladbrokes.com.au',
     category: 'Gaming · Sports Betting',
     headline: '36% revenue increase',
-    description:
-      'Streamlined user flows turned a loss-making category into a proven revenue driver — contributing directly to a successful business sale.',
     stats: [
       { value: '36%', label: 'revenue increase' },
       { value: '29%', label: 'Day 1 lift' },
@@ -31,8 +27,6 @@ const CASES = [
     logo: 'https://logo.clearbit.com/bhp.com',
     category: 'Enterprise · ASX 200',
     headline: '75,000 workers enabled globally',
-    description:
-      'A unified digital network with improved user interfaces reduced operational drag across a global workforce of 75,000+.',
     stats: [
       { value: '75k',    label: 'workers enabled' },
       { value: 'Global', label: 'rollout' },
@@ -43,11 +37,27 @@ const CASES = [
     logo: 'https://logo.clearbit.com/petzyo.com.au',
     category: 'DTC Ecommerce',
     headline: '100% MRR increase in 90 days',
-    description:
-      'Redesigned conversion pathways, email automation, and partner channel performance doubled monthly recurring revenue in under 3 months.',
     stats: [
       { value: '100%', label: 'MRR increase' },
-      { value: '90',   label: 'day project' },
+      { value: '90',   label: 'days' },
+    ],
+  },
+  {
+    client: 'Healthcare DTC',
+    logo: null,
+    category: 'Healthcare · Teeth Straightening',
+    headline: 'Day 1 profitability',
+    stats: [
+      { value: 'Day 1', label: 'profitability' },
+    ],
+  },
+  {
+    client: 'Dating App',
+    logo: null,
+    category: 'Consumer App · MVP',
+    headline: 'Market-ready MVP in 14 days',
+    stats: [
+      { value: '14', label: 'day delivery' },
     ],
   },
 ]
@@ -76,47 +86,46 @@ export default function CaseStudiesSection() {
           </Link>
         </div>
 
-        {/* Cards */}
-        <div className="grid sm:grid-cols-2 gap-5">
+        {/* Cards — 3 per row */}
+        <div className="grid sm:grid-cols-3 gap-5">
           {CASES.map((c) => (
             <div
               key={c.client}
-              className="bg-white border border-neutral-200 rounded-2xl p-8 sm:p-10 flex flex-col gap-6 hover:shadow-md transition-shadow duration-200"
+              className="bg-white border border-neutral-200 rounded-2xl p-7 flex flex-col gap-5 hover:shadow-md transition-shadow duration-200"
             >
-              {/* Logo + category */}
-              <div className="flex items-center justify-between gap-4">
-                <div className="h-9 flex items-center">
+              {/* Logo or client name */}
+              <div className="h-8 flex items-center">
+                {c.logo ? (
                   <Image
                     src={c.logo}
                     alt={c.client}
                     width={120}
-                    height={36}
-                    className="h-8 w-auto object-contain"
+                    height={32}
+                    className="h-7 w-auto object-contain"
                     unoptimized
                   />
-                </div>
-                <span className="text-[11px] font-bold uppercase tracking-widest text-neutral-400 text-right leading-tight">
-                  {c.category}
-                </span>
+                ) : (
+                  <span className="font-display font-bold text-neutral-900 text-base">{c.client}</span>
+                )}
               </div>
 
-              {/* Headline */}
-              <div>
-                <span className="inline-flex items-center px-3 py-1 rounded-full bg-green-50 border border-green-200 text-xs font-bold text-green-700 mb-4">
-                  {c.headline}
-                </span>
-                <p className="text-neutral-600 leading-relaxed" style={{ fontSize: '1.05rem' }}>
-                  {c.description}
-                </p>
-              </div>
+              {/* Category */}
+              <p className="text-[11px] font-bold uppercase tracking-widest text-neutral-400">
+                {c.category}
+              </p>
+
+              {/* Headline badge */}
+              <span className="self-start inline-flex items-center px-3 py-1.5 rounded-full bg-green-50 border border-green-200 text-xs font-bold text-green-700">
+                {c.headline}
+              </span>
 
               {/* Stats */}
-              <div className="flex gap-8 pt-2 border-t border-neutral-100">
+              <div className="flex gap-6 pt-3 border-t border-neutral-100 mt-auto">
                 {c.stats.map(s => (
                   <div key={s.label}>
                     <p
                       className="font-display font-bold text-neutral-900 leading-none mb-1"
-                      style={{ fontSize: 'clamp(1.75rem, 4vw, 2.5rem)' }}
+                      style={{ fontSize: 'clamp(1.5rem, 3vw, 2rem)' }}
                     >
                       {s.value}
                     </p>
