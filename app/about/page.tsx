@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Footer from '@/components/Footer'
 
 export const metadata: Metadata = {
@@ -24,7 +25,7 @@ export default function AboutPage() {
     <main>
       {/* Page header */}
       <section className="pt-28 pb-16 px-6 sm:px-8 text-center border-b border-neutral-100">
-        <div className="max-w-3xl mx-auto">
+        <div className="max-w-5xl mx-auto">
           <p className="text-green-500 text-[11px] font-bold uppercase tracking-widest mb-6">About</p>
           <h1
             className="font-display font-bold text-neutral-900 tracking-tight mb-6"
@@ -60,30 +61,41 @@ export default function AboutPage() {
 
       {/* Bio */}
       <section className="py-20 px-6 sm:px-8 border-b border-neutral-100">
-        <div className="max-w-3xl mx-auto">
-          <div className="space-y-6 text-neutral-600 leading-relaxed" style={{ fontSize: '1.125rem' }}>
-            <p>
-              Reed Iredale is an expert in marketing, design, and online behavioural economics.
-              He&apos;s a trained Data Scientist, has led and consulted on CRO for top ASX 200
-              clients, won NN Group design awards, and has 15+ years of marketing experience.
-            </p>
-            <p>
-              He&apos;s worked with 200+ Australian and international brands across ecommerce,
-              financial services, gaming, superannuation, and enterprise — including BHP, Ladbrokes,
-              Australian Retirement Trust, Oscar Wylee, loans.com.au, JB Racks, Petzyo,
-              Savings.com.au, and InfoChoice.
-            </p>
-            <p>
-              Reed studied Data Science and AI at the Institute of Data (
-              <strong className="text-neutral-900">RMIT University</strong> and{' '}
-              <strong className="text-neutral-900">UTS</strong>). He applies a rigorous,
-              experiment-led approach to growth — every recommendation is hypothesis-driven,
-              every outcome is measured.
-            </p>
-            <p>
-              Based in Brisbane, Australia. Grew up in Byron Bay and Mission Beach.
-              Newcastle United and Brisbane Broncos supporter.
-            </p>
+        <div className="max-w-5xl mx-auto">
+          <div className="flex flex-col sm:flex-row gap-12 sm:gap-16 items-start">
+            <div className="flex-1 space-y-6 text-neutral-600 leading-relaxed" style={{ fontSize: '1.125rem' }}>
+              <p>
+                Reed Iredale is an expert in marketing, design, and online behavioural economics.
+                He&apos;s a trained Data Scientist, has led and consulted on CRO for top ASX 200
+                clients, won NN Group design awards, and has 15+ years of marketing experience.
+              </p>
+              <p>
+                He&apos;s worked with 200+ Australian and international brands across ecommerce,
+                financial services, gaming, superannuation, and enterprise — including BHP, Ladbrokes,
+                Australian Retirement Trust, Oscar Wylee, loans.com.au, JB Racks, Petzyo,
+                Savings.com.au, and InfoChoice.
+              </p>
+              <p>
+                Reed studied Data Science and AI at the Institute of Data (
+                <strong className="text-neutral-900">RMIT University</strong> and{' '}
+                <strong className="text-neutral-900">UTS</strong>). He applies a rigorous,
+                experiment-led approach to growth — every recommendation is hypothesis-driven,
+                every outcome is measured.
+              </p>
+              <p>
+                Based in Brisbane, Australia. Grew up in Byron Bay and Mission Beach.
+                Newcastle United and Brisbane Broncos supporter.
+              </p>
+            </div>
+            <div className="sm:w-72 shrink-0">
+              <Image
+                src="/reed-iredale-headshot.webp"
+                alt="Reed Iredale"
+                width={288}
+                height={360}
+                className="w-full rounded-2xl object-cover object-top shadow-lg"
+              />
+            </div>
           </div>
         </div>
       </section>
@@ -115,7 +127,7 @@ export default function AboutPage() {
 
       {/* Philosophy */}
       <section className="py-20 px-6 sm:px-8 border-b border-neutral-100">
-        <div className="max-w-3xl mx-auto">
+        <div className="max-w-5xl mx-auto">
           <div className="border-l-4 border-green-500 pl-8">
             <p
               className="font-display font-bold text-neutral-700 leading-snug italic"
