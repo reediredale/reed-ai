@@ -6,9 +6,9 @@ import { usePathname } from 'next/navigation'
 import { usePostHog } from 'posthog-js/react'
 
 const NAV_LINKS = [
-  { label: 'AI Consulting', href: '/ai-consulting' },
   { label: 'About',         href: '/about' },
   { label: 'Case Studies',  href: '/case-studies' },
+  { label: 'AI Consulting', href: '/ai-consulting' },
 ]
 
 export default function Nav() {
