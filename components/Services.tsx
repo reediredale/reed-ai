@@ -31,9 +31,9 @@ const SERVICES = [
   },
   {
     num: '05',
-    title: 'Analytics & Attribution',
+    title: 'AI & Data Science for Ecommerce',
     description:
-      'Clean measurement so you know what\'s actually driving conversions. GA4 setup, funnel tracking, and attribution modelling that reflects reality — not what the platform wants you to believe.',
+      'Machine learning and AI applied directly to your revenue levers — predictive churn models, personalisation engines, customer segmentation, and data pipelines that turn raw behaviour into compounding growth.',
     tag: null,
   },
 ]
