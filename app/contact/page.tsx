@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 const VALUE_ITEMS = [
   { icon: '⚡', text: 'Response within 48 hours' },
-  { icon: '🎯', text: 'Straight talk — no pitch, no fluff' },
+  { icon: '🎯', text: 'Straight talk' },
   { icon: '🌏', text: 'Working with brands across AU & internationally' },
   { icon: '🔒', text: 'Everything discussed stays confidential' },
 ]
@@ -26,7 +26,7 @@ export default function ContactPage() {
             className="font-display font-bold text-neutral-900 tracking-tight mb-6"
             style={{ fontSize: 'clamp(2.5rem, 7vw, 4.5rem)', lineHeight: 1.05 }}
           >
-            Let&apos;s work<br /> together.
+            Let&apos;s work together.
           </h1>
           <p className="text-neutral-500 text-xl leading-relaxed max-w-xl mx-auto">
             Tell me about your business. I&apos;ll be in touch within 48 hours.
