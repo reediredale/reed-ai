@@ -130,7 +130,7 @@ export default function AIConsultingPage() {
             Ready to see where AI fits?
           </h2>
           <p className="text-neutral-500 text-lg mb-8">
-            I&apos;ll be in touch within 48 hours. No pitch — ever.
+            I&apos;ll be in touch within 48 hours. 
           </p>
           <a
             href="/contact"

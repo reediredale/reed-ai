@@ -88,6 +88,14 @@ export default function AboutPage() {
               </p>
             </div>
             <div className="sm:w-72 shrink-0">
+
+              <Image
+                src="/reed-iredale-full-body.webp"
+                alt="Reed Iredale"
+                width={288}
+                height={360}
+                className="w-full rounded-2xl object-cover object-top shadow-lg mb-4"
+              />
               <Image
                 src="/reed-iredale-headshot.webp"
                 alt="Reed Iredale"
@@ -95,6 +103,8 @@ export default function AboutPage() {
                 height={360}
                 className="w-full rounded-2xl object-cover object-top shadow-lg"
               />
+              
+              
             </div>
           </div>
         </div>

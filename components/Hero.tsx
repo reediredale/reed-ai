@@ -19,11 +19,11 @@ export default function Hero() {
       <section className="bg-slate-900 min-h-[calc(100vh-0px)] flex flex-col sm:flex-row overflow-hidden">
 
         {/* Text side */}
-        <div className="flex flex-col justify-center px-8 sm:px-16 pt-32 pb-16 sm:pt-0 sm:pb-0 sm:w-[52%] shrink-0 z-10">
+        <div className="flex flex-col justify-center px-8 sm:px-16 pt-12 pb-4 sm:pt-0 sm:pb-0 sm:w-[52%] shrink-0 z-10">
 
           {/* Identity */}
           <p className="text-white/40 text-[11px] font-bold uppercase tracking-widest mb-8">
-            Reed Iredale &nbsp;·&nbsp; Growth Experimentation Consultant &nbsp;·&nbsp; Brisbane, AU
+            Reed Iredale &nbsp;·&nbsp; Conversion Rate Optimisation Expert &nbsp;·&nbsp; Brisbane, AU
           </p>
 
           {/* Headline */}
@@ -36,8 +36,8 @@ export default function Hero() {
           </h1>
 
           {/* Sub */}
-          <p className="text-white/50 text-lg leading-relaxed mb-10 max-w-md">
-            I run structured growth experiments that find the revenue hiding in your funnel —
+          <p className="text-white/50 text-lg leading-relaxed mb-10 max-w-[650px]">
+            I run conversion marketing that finds the revenue hiding in your funnel —
             the leaks your analytics aren&apos;t showing you. No extra ad spend required.
           </p>
 
@@ -67,7 +67,7 @@ export default function Hero() {
         {/* Photo side */}
         <div className="relative h-72 sm:h-auto sm:flex-1 order-first sm:order-last">
           <Image
-            src="/reed-iredale-headshot.webp"
+            src="/reed-iredale-full-body.webp"
             alt="Reed Iredale"
             fill
             className="object-cover object-top"

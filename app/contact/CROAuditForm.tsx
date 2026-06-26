@@ -141,7 +141,7 @@ export default function CROAuditForm() {
         </button>
 
         <p className="text-center text-xs text-neutral-400 pt-1">
-          I respond to every message. No pitch — ever. Just a straight answer.
+          I respond to every message. Just a straight answer.
         </p>
       </form>
     </>
