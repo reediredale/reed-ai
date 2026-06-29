@@ -59,7 +59,7 @@ export default function Services() {
             className="font-display font-bold text-neutral-900 tracking-tight"
             style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)', lineHeight: 1.1 }}
           >
-            Post-Click Growth for Ecom and Service Brands
+            Post-Click Growth
           </h2>
         </div>
 
