@@ -2,9 +2,10 @@ import type { Metadata } from 'next'
 import Footer from '@/components/Footer'
 
 export const metadata: Metadata = {
-  title: 'Case Studies — Reed Iredale',
+  title: 'Case Studies',
   description:
     'Real CRO and growth experimentation results with Australian and international brands including BHP, Ladbrokes, Australian Retirement Trust, and Petzyo.',
+  alternates: { canonical: 'https://reediredale.com/case-studies' },
 }
 
 const CASE_STUDIES = [
@@ -144,7 +145,7 @@ export default function CaseStudiesPage() {
             Want results like these?
           </h2>
           <p className="text-neutral-500 text-lg mb-8">
-            I&apos;ll be in touch within 48 hours. No pitch — ever.
+            I&apos;ll be in touch within 48 hours.
           </p>
           <a
             href="/contact"

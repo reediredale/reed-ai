@@ -3,9 +3,10 @@ import Footer from '@/components/Footer'
 import CROAuditForm from './CROAuditForm'
 
 export const metadata: Metadata = {
-  title: 'Contact — Reed Iredale',
+  title: 'Contact',
   description:
     'Get in touch with Reed Iredale. Growth experimentation consultant working with brands across ecommerce, financial services, gaming, and enterprise.',
+  alternates: { canonical: 'https://reediredale.com/contact' },
 }
 
 const VALUE_ITEMS = [

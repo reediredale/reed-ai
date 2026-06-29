@@ -3,9 +3,10 @@ import Image from 'next/image'
 import Footer from '@/components/Footer'
 
 export const metadata: Metadata = {
-  title: 'About — Reed Iredale',
+  title: 'About',
   description:
     'Growth Experimentation and CRO expert. 15+ years in marketing, design, and data science. Worked with BHP, Ladbrokes, Australian Retirement Trust, and 200+ others.',
+  alternates: { canonical: 'https://reediredale.com/about' },
 }
 
 const STATS = [

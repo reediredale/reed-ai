@@ -2,9 +2,10 @@ import type { Metadata } from 'next'
 import Footer from '@/components/Footer'
 
 export const metadata: Metadata = {
-  title: 'AI Consulting — Reed Iredale',
+  title: 'AI Consulting',
   description:
     "AI marketing consulting to maximise your team's outcomes. Data-driven automation, AI integration, and growth systems for sales and marketing teams.",
+  alternates: { canonical: 'https://reediredale.com/ai-consulting' },
 }
 
 const SERVICES = [
